@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
-import chat from "./../images/chat.svg"
-
-
+import React, { useState } from "react";
+import chat from "./../images/chat.svg";
 
 const ChatBox = () => {
-console.log(chat);
   const [bannerOpen, setBannerOpen] = useState(true);
   const [openChatBox, setOpenChatBox] = useState(false);
-    console.log("openChatBox", openChatBox);
+  console.log("openChatBox", openChatBox);
   return (
     <>
-   
-      <div className="fixed bottom-0 right-0 w-full md:bottom-8 md:right-12 md:w-auto z-60" onClick={() => setOpenChatBox(openChatBox ? false: true)}>
-      { !openChatBox && (
-      <svg version="1.0" xmlns="http://www.w3.org/2000/svg" style={{ height: 40, width: 40,backgroundColor: "grey", padding: 2}}
- width="1118.000000pt" height="1280.000000pt" viewBox="0 0 1118.000000 1280.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.15, written by Peter Selinger 2001-2017
-</metadata>
-<g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M5435 12794 c-954 -55 -1686 -214 -2470 -536 -185 -76 -588 -279
+      <div
+        className="fixed bottom-0 right-0 w-full md:bottom-8 md:right-12 md:w-auto z-60"
+        onClick={() => setOpenChatBox(openChatBox ? false : true)}
+      >
+        {!openChatBox && (
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{
+              height: 40,
+              width: 40,
+              backgroundColor: "grey",
+              padding: 2,
+            }}
+            width="1118.000000pt"
+            height="1280.000000pt"
+            viewBox="0 0 1118.000000 1280.000000"
+            preserveAspectRatio="xMidYMid meet"
+          >
+            <metadata>
+              Created by potrace 1.15, written by Peter Selinger 2001-2017
+            </metadata>
+            <g
+              transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+              fill="#000000"
+              stroke="none"
+            >
+              <path
+                d="M5435 12794 c-954 -55 -1686 -214 -2470 -536 -185 -76 -588 -279
 -750 -377 -377 -229 -651 -444 -955 -750 -225 -225 -365 -395 -524 -636 -168
 -252 -253 -410 -364 -672 -237 -556 -349 -1166 -368 -2013 -20 -827 94 -1450
 349 -1920 14 -25 29 -77 36 -116 l11 -72 -57 -83 c-139 -207 -236 -496 -279
@@ -55,35 +69,22 @@ c4 -29 17 -68 28 -87z m1192 -1126 c6 -11 8 -20 6 -20 -3 0 -10 9 -16 20 -6
 88 -72 151 -63 140 8 -11 53 -96 99 -190z m284 -760 c0 -5 -4 -3 -9 5 -5 8 -9
 22 -9 30 0 16 17 -16 18 -35z m-734 -3354 c-22 -36 -239 -165 -352 -210 -149
 -59 -221 -72 -418 -76 -165 -3 -170 -3 -60 5 298 20 567 106 767 246 67 46 73
-50 63 35z"/>
-</g>
-</svg>
-  )}
+50 63 35z"
+              />
+            </g>
+          </svg>
+        )}
 
-{openChatBox && (
-        <>
-        <div style={{height: 600, width: 200, backgroundColor: "grey"}}>
-    <p  >chat aperta</p>
-    </div>
-        </>
-)
-}
-
+        {openChatBox && (
+          <>
+            <div style={{ height: 600, width: 200, backgroundColor: "grey" }}>
+              <p>chat aperta</p>
+            </div>
+          </>
+        )}
       </div>
-  
-
-
-
-
-    
-    
-    
-    
-    
-    
-
     </>
   );
-}
+};
 
 export default ChatBox;
