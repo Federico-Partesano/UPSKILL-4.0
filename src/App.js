@@ -16,7 +16,7 @@ function App() {
   useEffect(() => {
     const random = setInterval(() => {
       setgridDashboard(randomValue());
-    }, 1000);
+    }, 4000);
     return () => {
       clearInterval(random);
     };

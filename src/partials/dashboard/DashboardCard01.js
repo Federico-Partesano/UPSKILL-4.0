@@ -1,8 +1,9 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 // Import utilities
-import success from "../../images/success.svg";
-import warning from "../../images/warning.svg";
-import redX from "../../images/x.svg";
+import success from "../../images/succesIcon.svg";
+import warning from "../../images/allarme.svg";
+import redX from "../../images/xbuttonRed.svg";
+
 import { countWorkingSensors } from "../../resources/dataArrayGrid";
 import { colors } from "../../resources/types";
 
@@ -25,7 +26,7 @@ function DashboardCard01({ array, type }) {
   }, [array]);
 
   return (
-  <>
+    <>
       <div className="px-5 pb-5">
         {/* <h2 className="text-lg font-semibold text-gray-800 mb-2">Acme Plus</h2> */}
         <img src={typeCard[type].image} style={{ width: 50 }} alt={type}></img>
@@ -42,7 +43,7 @@ function DashboardCard01({ array, type }) {
       {/* <div className="flex-grow">
        Change the height attribute to adjust the chart height 
       </div> */}
-  </>
+    </>
   );
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-function DashboardCard07({ titleField, array }) {
+function DashboardCard07({ titleField, array, openModal }) {
   return (
     // xl:col-span-8
     <div className="col-span-full xl:col-span-12 bg-white shadow-lg rounded-sm border border-gray-200">
@@ -44,7 +44,10 @@ function DashboardCard07({ titleField, array }) {
               {/* Row */}
               {array.map((element) => {
                 return (
-                  <tr>
+                  <tr onClick={() => {
+                    console.log("Clicked sensor id: ", element.id);
+                    openModal && openModal(element.id);
+                  }}>
                     <td className="p-2">
                       <div className="flex items-center">
                         <div className="text-gray-800">{element.id}</div>
@@ -76,7 +79,6 @@ function DashboardCard07({ titleField, array }) {
                   </tr>
                 );
               })}
-              {/* Row */}
               {/* Row */}
             </tbody>
           </table>

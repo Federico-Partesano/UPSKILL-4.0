@@ -77,32 +77,32 @@ function Dashboard({ gridDashboard }) {
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
               {/* {width > 0 && ( */}
-                {!page ? (
+              {!page ? (
                 <>
                   {/* Line chart (Acme Plus) */}
                   {/* <DashboardCard01 /> */}
                   {/* Line chart (Acme Advanced) */}
                   <div
-      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("success")}
-      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
-    
-                  <DashboardCard01 type="success" array={gridDashboard} />
+                    className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("success")}
+                    style={{ height: 200, alignItems: "center", justifyContent: "center", backgroundColor: "#92FA41" }}>
+
+                    <DashboardCard01 type="success" array={gridDashboard} />
                   </div>
                   <div
-      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("warning")}
-      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
-                  <DashboardCard01 type="warning" array={gridDashboard} />
+                    className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("warning")}
+                    style={{ height: 200, alignItems: "center", justifyContent: "center", backgroundColor: "#E2DB21" }}>
+                    <DashboardCard01 type="warning" array={gridDashboard} />
                   </div>
                   <div
-      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("alarm")}
-      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
-                  <DashboardCard01 type="alarm" array={gridDashboard}/>
+                    className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("alarm")}
+                    style={{ height: 200, alignItems: "center", justifyContent: "center", backgroundColor: "#F10808" }}>
+                    <DashboardCard01 type="alarm" array={gridDashboard} />
                   </div>
                   {/* Line chart (Acme Professional) */}
                   {/* <DashboardCard03 /> */}
                   {/* Bar chart (Direct vs Indirect) */}
                   {/* <DashboardCard04 /> */}
-                 
+
                   {/* Doughnut chart (Top Countries) */}
                   {/* <DashboardCard06 /> */}
                   {/* Table (Top Channels) */}
@@ -116,8 +116,8 @@ function Dashboard({ gridDashboard }) {
                     ]}
                     array={gridDashboard}
                   />
-                   {/* Line chart (Real Time Value) */}
-                   {gridDashboard && (
+                  {/* Line chart (Real Time Value) */}
+                  {gridDashboard && (
                     <DashboardCard05 array={gridDashboard[0].arrayValue} />
                   )}
                   {/* Line chart (Sales Over Time) */}
@@ -147,7 +147,7 @@ function Dashboard({ gridDashboard }) {
                     />
                   )}
                 </>
-              ): (<Report array={gridDashboard} status={page} setPage={setPage} />)}
+              ) : (<Report array={gridDashboard} status={page} setPage={setPage} />)}
             </div>
           </div>
         </main>
