@@ -20,32 +20,20 @@ import DashboardCard10 from "../partials/dashboard/DashboardCard10";
 import DashboardCard11 from "../partials/dashboard/DashboardCard11";
 import DashboardCard12 from "../partials/dashboard/DashboardCard12";
 import DashboardCard13 from "../partials/dashboard/DashboardCard13";
-import Banner from "../partials/Banner";
-import ChatBox from "../partials/Chat-box";
 import Grid from "../components/grid";
 import { arrayDashboardGrid, randomValue } from "../resources/dataArrayGrid";
-
-function Dashboard() {
+import Report from "./Report";
+function Dashboard({ gridDashboard }) {
   const { height, width } = useWindowDimension();
-  const [gridDashboard, setgridDashboard] = useState(arrayDashboardGrid);
-
-  useEffect(() => {
-    const random = setInterval(() => {
-      setgridDashboard(randomValue());
-    }, 1000);
-    console.log(gridDashboard);
-    return () => {
-      clearInterval(random);
-    };
-  });
-
+  const [page, setPage] = useState();
   // const [dimensionsPage, setDimensionsPage] = useState({with} = useDimensio
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    console.log("width", width, "height", height);
-  }, [width, height]);
+    // console.log("width", width, "height", height);
+    console.log(page);
+  }, [page]);
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -60,20 +48,20 @@ function Dashboard() {
         <main>
           <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
             {/* Welcome banner */}
-            <WelcomeBanner />
+            {/* <WelcomeBanner /> */}
 
-            {/* Dashboard actions */}
+            {/* Dashboard actions 
             <div className="sm:flex sm:justify-between sm:items-center mb-8">
-              {/* Left: Avatars */}
+              {/* Left: Avatars 
               <DashboardAvatars />
 
-              {/* Right: Actions */}
+              /* Right: Actions 
               <div className="grid grid-flow-col sm:auto-cols-max justify-start sm:justify-end gap-2">
-                {/* Filter button */}
+                /* Filter button 
                 <FilterButton />
-                {/* Datepicker built with flatpickr */}
+                /* Datepicker built with flatpickr 
                 <Datepicker />
-                {/* Add view button */}
+                /* Add view button 
                 <button className="btn bg-indigo-500 hover:bg-indigo-600 text-white">
                   <svg
                     className="w-4 h-4 fill-current opacity-50 flex-shrink-0"
@@ -84,38 +72,66 @@ function Dashboard() {
                   <span className="hidden xs:block ml-2">Add view</span>
                 </button>
               </div>
-            </div>
+              </div> */}
 
             {/* Cards */}
             <div className="grid grid-cols-12 gap-6">
-              {width > 768 && (
+              {/* {width > 0 && ( */}
+                {!page ? (
                 <>
                   {/* Line chart (Acme Plus) */}
-                  <DashboardCard01 />
+                  {/* <DashboardCard01 /> */}
                   {/* Line chart (Acme Advanced) */}
-                  <DashboardCard02 />
+                  <div
+      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("success")}
+      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
+    
+                  <DashboardCard01 type="success" array={gridDashboard} />
+                  </div>
+                  <div
+      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("warning")}
+      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
+                  <DashboardCard01 type="warning" array={gridDashboard} />
+                  </div>
+                  <div
+      className="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200" onClick={() => setPage("alarm")}
+      style={{ height: 200, alignItems: "center", justifyContent: "center" }}>
+                  <DashboardCard01 type="alarm" array={gridDashboard}/>
+                  </div>
                   {/* Line chart (Acme Professional) */}
-                  <DashboardCard03 />
+                  {/* <DashboardCard03 /> */}
                   {/* Bar chart (Direct vs Indirect) */}
-                  <DashboardCard04 />
-                  {/* Line chart (Real Time Value) */}
-                  <DashboardCard05 />
+                  {/* <DashboardCard04 /> */}
+                 
                   {/* Doughnut chart (Top Countries) */}
-                  <DashboardCard06 />
+                  {/* <DashboardCard06 /> */}
                   {/* Table (Top Channels) */}
-                  <DashboardCard07 />
+                  <DashboardCard07
+                    titleField={[
+                      "sensore",
+                      "valore",
+                      "tipo",
+                      "applicato",
+                      "stato",
+                    ]}
+                    array={gridDashboard}
+                  />
+                   {/* Line chart (Real Time Value) */}
+                   {gridDashboard && (
+                    <DashboardCard05 array={gridDashboard[0].arrayValue} />
+                  )}
                   {/* Line chart (Sales Over Time) */}
-                  <DashboardCard08 />
+                  {/* <DashboardCard08 /> */}
                   {/* Stacked bar chart (Sales VS Refunds) */}
-                  <DashboardCard09 />
+                  {/* <DashboardCard09 /> */}
                   {/* Card (Customers) */}
-                  <DashboardCard10 />
+                  {/* <DashboardCard10 /> */}
                   {/* Card (Reasons for Refunds) */}
-                  <DashboardCard11 />
+                  {/* <DashboardCard11 /> */}
                   {/* Card (Recent Activity) */}
-                  <DashboardCard12 />
+                  {/* <DashboardCard12 /> */}
                   {/* Card (Income/Expenses) */}
-                  <DashboardCard13 />
+                  {/* <DashboardCard13 /> */}
                   {/* Message Chat Box */}
                   {/* <ChatBox /> */}
                   {gridDashboard && (
@@ -131,7 +147,7 @@ function Dashboard() {
                     />
                   )}
                 </>
-              )}
+              ): (<Report array={gridDashboard} status={page} setPage={setPage} />)}
             </div>
           </div>
         </main>
