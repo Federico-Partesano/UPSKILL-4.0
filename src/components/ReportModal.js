@@ -1,9 +1,13 @@
-import React, { Fragment, useRef } from 'react'
+import React, { Fragment, useRef } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import modalClosingButton from "../images/Xbutton.svg";
+import successImg1 from "../images/succesIcon.svg";
+import warningImg1 from "../images/allarme.svg";
+import redXImg1 from "../images/xbuttonRed.svg";
 
-const ReportModal = ({ open, setOpen, selectedElement, state, image, status,  }) => {
+const ReportModal = ({ array, open, setOpen, selectedElement, setSelectedElement }) => {
     const cancelButtonRef = useRef(null);
+    const found = selectedElement && array.find(element => element.id === selectedElement.id);
 
     return (
         <>
@@ -36,19 +40,22 @@ const ReportModal = ({ open, setOpen, selectedElement, state, image, status,  })
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
                             <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
-                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" style={{ paddingBottom: 40 }}>
+                                <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" style={{ paddingBottom: 30 }}>
                                     <div className="mb-7">
-                                        <img src={modalClosingButton} style={{ width: 40 }} alt={state} onClick={() => setOpen(false)}></img>
+                                        <img src={modalClosingButton} style={{ width: 40 }} onClick={() => {
+                                            setOpen(false)
+                                            setSelectedElement(undefined);
+                                        }}></img>
                                     </div>
                                     <div className="sm:flex sm:items-start">
                                         <div className="mt-3 text-center sm:mt-0 sm:text-left">
                                             <Dialog.Title as="h3" className="text-lg leading-6 font-medium text-gray-900 text-center" style={{ paddingBottom: 40 }}>
-                                                {selectedElement && `Sensore di ${selectedElement.type} ${selectedElement.id}`}
+                                                {found && `Sensore di ${found.type} ${found.id}`}
                                             </Dialog.Title>
-                                            <img src={image} style={{ width: 80, margin: "auto", paddingBottom: 40 }} alt={state}></img>
-                                            <div className="mt-2" style={{ paddingBottom: 40 }}>
+                                            <img src={found && (found.status === "#92FA41" ? successImg1 : found.status === "#E2DB21" ? warningImg1 : redXImg1)} style={{ width: 80, margin: "auto", paddingBottom: 40 }}></img>
+                                            <div className="mt-2" style={{ paddingBottom: 30 }}>
                                                 <p className="text-sm text-gray-500 text-center font-bold">
-                                                    {selectedElement && `Il sensore di ${selectedElement.type} ${selectedElement.id} applicato a ${selectedElement.applied} registra valori ${status === "success" ? 'nella norma' : status === "warning" ? 'prossimi al limite' : 'fuori norma'}: ${selectedElement.sensorValue}`}
+                                                    {found && `Il sensore di ${found.type} ${found.id} applicato a ${found.applied} registra valori ${found.status === "#92FA41" ? 'nella norma' : found.status === "#E2DB21" ? 'prossimi al limite' : 'fuori norma'}: ${found.sensorValue}`}
                                                 </p>
                                             </div>
                                         </div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import useWindowDimension from "use-window-dimensions";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
@@ -27,9 +26,8 @@ function Dashboard({ gridDashboard }) {
   const { height, width } = useWindowDimension();
   const [page, setPage] = useState();
   // const [dimensionsPage, setDimensionsPage] = useState({with} = useDimensio
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
+  
   useEffect(() => {
     // console.log("width", width, "height", height);
     console.log(page);

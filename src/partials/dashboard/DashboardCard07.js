@@ -1,6 +1,7 @@
 import React from "react";
 
 function DashboardCard07({ titleField, array, openModal }) {
+  
   return (
     // xl:col-span-8
     <div className="col-span-full xl:col-span-12 bg-white shadow-lg rounded-sm border border-gray-200">
