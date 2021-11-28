@@ -15,10 +15,9 @@ const Report = ({ array, status, setPage }) => {
   const state = status === "success" ? colors.success : status === "warning" ? colors.warning : colors.alarm;
   const image = status === "success" ? successImg1 : status === "warning" ? warningImg1 : redXImg1;
 
-  const openModal = (id) => {
-    setOpen(true); //open the modal component
-    const found = array.find(element => element.id === id); //select the element in the clicked row
-    found && setSelectedElement(found); //update selectedElement state
+  const openModal = (element) => {
+    setOpen(true);
+    setSelectedElement(element);
   }
 
   console.log(state);

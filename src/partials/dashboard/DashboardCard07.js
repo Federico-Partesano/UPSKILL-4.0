@@ -45,8 +45,7 @@ function DashboardCard07({ titleField, array, openModal }) {
               {array.map((element) => {
                 return (
                   <tr onClick={() => {
-                    console.log("Clicked sensor id: ", element.id);
-                    openModal && openModal(element.id);
+                    openModal && openModal(element);
                   }}>
                     <td className="p-2">
                       <div className="flex items-center">

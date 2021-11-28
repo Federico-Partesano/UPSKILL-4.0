@@ -1,1 +1,5 @@
-<svg id="Livello_1" data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.19 105.19"><defs><style>.cls-1,.cls-2{fill:#c6c6c6;}.cls-2{stroke:#e52421;stroke-linecap:round;stroke-linejoin:round;stroke-width:11px;}</style></defs><circle class="cls-1" cx="52.6" cy="52.6" r="52.6"/><line class="cls-2" x1="27.03" y1="27.03" x2="78.16" y2="78.16"/><line class="cls-2" x1="78.16" y1="27.03" x2="27.03" y2="78.16"/></svg>
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="48" cy="48" r="48" fill="white"/>
+<line x1="27.8569" y1="68.9289" x2="68.7859" y2="28" stroke="#FF0000" stroke-width="10" stroke-linecap="round"/>
+<line x1="28.0702" y1="28.3826" x2="69.8719" y2="68.9302" stroke="#FF0000" stroke-width="10" stroke-linecap="round"/>
+</svg>
