@@ -9,6 +9,7 @@ import "./charts/ChartjsConfig";
 
 // Import pages
 import Dashboard from "./pages/Dashboard";
+import Machines from "./pages/Machines";
 
 function App() {
   const [gridDashboard, setgridDashboard] = useState(arrayDashboardGrid);
@@ -38,6 +39,10 @@ function App() {
           path="/"
           element={<Dashboard gridDashboard={gridDashboard} />}
         ></Route>
+
+        <Route path="/vasche_latte" element={<Machines arrayGrid={gridDashboard} />}/>
+        <Route path="/pastorizzazione" element={<Machines arrayGrid={gridDashboard} />} />
+        <Route path="/stagionatura" element={<Machines arrayGrid={gridDashboard} />} />
       </Routes>
     </>
   );

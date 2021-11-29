@@ -244,7 +244,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             >
               <NavLink
                 exact
-                to="/"
+                to=""
                 className={`block text-gray-200 hover:text-white transition duration-150 ${
                   page.startsWith("team-") && "hover:text-gray-200"
                 }`}
@@ -289,7 +289,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <li className="mb-1 last:mb-0">
                   <NavLink
                     exact
-                    to="/"
+                    to="/vasche_latte"
                     className={`block text-gray-200 hover:text-white transition duration-150 ${
                       page === "team-tabs" &&
                       "text-indigo-400 hover:text-indigo-400"
@@ -301,7 +301,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <li className="mb-1 last:mb-0">
                   <NavLink
                     exact
-                    to="/"
+                    to="/pastorizzazione"
                     className={`block text-gray-200 hover:text-white transition duration-150" ${
                       page === "team-tiles" &&
                       "text-indigo-400 hover:text-indigo-400"
@@ -313,13 +313,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                 <li className="mb-1 last:mb-0">
                   <NavLink
                     exact
-                    to="/"
+                    to="/stagionatura"
                     className={`block text-gray-200 hover:text-white transition duration-150 ${
                       page === "team-tabs" &&
                       "text-indigo-400 hover:text-indigo-400"
                     }`}
                   >
-                    <span className="text-sm font-medium">Celle frigorifere</span>
+                    <span className="text-sm font-medium">Stagionatura</span>
                   </NavLink>
                 </li>
               </ul>
