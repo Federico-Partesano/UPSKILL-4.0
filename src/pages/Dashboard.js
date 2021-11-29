@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import useWindowDimension from "use-window-dimensions";
 import Sidebar from "../partials/Sidebar";
 import Header from "../partials/Header";
@@ -22,12 +23,21 @@ import DashboardCard13 from "../partials/dashboard/DashboardCard13";
 import Grid from "../components/grid";
 import { arrayDashboardGrid, randomValue } from "../resources/dataArrayGrid";
 import Report from "./Report";
+
 function Dashboard({ gridDashboard }) {
   const { height, width } = useWindowDimension();
   const [page, setPage] = useState();
   // const [dimensionsPage, setDimensionsPage] = useState({with} = useDimensio
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("authorized") !== "true") {
+      localStorage.setItem("notAuthorized", "dashboard");
+      navigate("/", { replace: true });
+    };
+  }, []);
+
   useEffect(() => {
     // console.log("width", width, "height", height);
     console.log(page);

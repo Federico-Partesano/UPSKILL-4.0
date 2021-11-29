@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
 import "../partials/machines/css/machines.scss";
 import { arrayDashboardGrid, randomValue } from "../resources/dataArrayGrid";
 import { typeApplied } from "../resources/types";
@@ -14,18 +13,26 @@ import DashboardCard07 from "../partials/dashboard/DashboardCard07";
 import ReportModalMachine from "../components/ReportModalMachine";
 import DashboardCard05 from "../partials/dashboard/DashboardCard05";
 
-const Machines = ({arrayGrid}) => {
+const Machines = ({ arrayGrid }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const { pathname } = location;
     const page = pathname.split("/")[1];
-    
+
     const [open, setOpen] = useState(false);
-    const [selectedElement, setSelectedElement] = useState(undefined);    
+    const [selectedElement, setSelectedElement] = useState(undefined);
 
     const openModal = (element) => {
         setOpen(true);
         setSelectedElement(element);
     }
+
+    useEffect(() => {
+        if (localStorage.getItem("authorized") !== "true") {
+            localStorage.setItem("notAuthorized", "macchinari");
+            navigate("/", { replace: true });
+        };
+    }, []);
 
     //console.log(arrayDashboardGrid);
 
@@ -105,7 +112,7 @@ const Machines = ({arrayGrid}) => {
             id: "12df12",
             stato: 2,
             dataOra: "15/12/22 12:30",
-            umidita: 40,     
+            umidita: 40,
             temperatura: 22,
         },
 
@@ -113,7 +120,7 @@ const Machines = ({arrayGrid}) => {
             id: "12df12",
             stato: 1,
             dataOra: "15/12/22 12:30",
-            umidita: 40,       
+            umidita: 40,
             temperatura: 26,
         },
     ];
@@ -121,17 +128,17 @@ const Machines = ({arrayGrid}) => {
     switch (page) {
         case "vasche_latte":
             title = "Vasche del Latte";
-            data = arrayGrid.filter(({applied}) => applied === typeApplied.milkTank);
+            data = arrayGrid.filter(({ applied }) => applied === typeApplied.milkTank);
             break;
 
         case "pastorizzazione":
             title = "Pastorizzazione";
-            data = arrayGrid.filter(({applied}) => applied === typeApplied.pasteurization);
+            data = arrayGrid.filter(({ applied }) => applied === typeApplied.pasteurization);
             break;
 
         case "stagionatura":
             title = "Stanze di Stagionatura";
-            data = arrayGrid.filter(({applied}) => applied === typeApplied.seasoning);           
+            data = arrayGrid.filter(({ applied }) => applied === typeApplied.seasoning);
     }
 
     return (
@@ -143,24 +150,24 @@ const Machines = ({arrayGrid}) => {
 
                 <div className="machines p-10">
                     <h1 id="title"> {title} </h1>
-                    
+
                     <ModalData
-                    open={open}
-                    setOpen={setOpen}
-                    selectedElement={selectedElement}
-                    setSelectedElement={setSelectedElement}
+                        open={open}
+                        setOpen={setOpen}
+                        selectedElement={selectedElement}
+                        setSelectedElement={setSelectedElement}
                     />
-                    
+
                     <DashboardCard07
-                    titleField={[
-                      "sensore",
-                      "valore",
-                      "tipo",
-                      "applicato",
-                      "stato",
-                    ]}
-                    array={data}
-                    openModal={openModal}
+                        titleField={[
+                            "sensore",
+                            "valore",
+                            "tipo",
+                            "applicato",
+                            "stato",
+                        ]}
+                        array={data}
+                        openModal={openModal}
                     />
 
                     {/*<ReportModalMachine

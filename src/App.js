@@ -8,6 +8,7 @@ import { focusHandling } from "cruip-js-toolkit";
 import "./charts/ChartjsConfig";
 
 // Import pages
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 
@@ -37,12 +38,22 @@ function App() {
         <Route
           exact
           path="/"
+          element={<Login />}
+        ></Route>
+        <Route
+          exact
+          path="/dashboard"
           element={<Dashboard gridDashboard={gridDashboard} />}
         ></Route>
-
-        <Route path="/vasche_latte" element={<Machines arrayGrid={gridDashboard} />}/>
-        <Route path="/pastorizzazione" element={<Machines arrayGrid={gridDashboard} />} />
-        <Route path="/stagionatura" element={<Machines arrayGrid={gridDashboard} />} />
+        <Route
+          path="/vasche_latte"
+          element={<Machines arrayGrid={gridDashboard} />} />
+        <Route
+          path="/pastorizzazione"
+          element={<Machines arrayGrid={gridDashboard} />} />
+        <Route
+          path="/stagionatura"
+          element={<Machines arrayGrid={gridDashboard} />} />
       </Routes>
     </>
   );
