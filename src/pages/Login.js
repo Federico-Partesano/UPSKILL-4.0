@@ -43,7 +43,6 @@ function Login() {
       default:
         localStorage.setItem("authorized", "true");
         navigate("./dashboard");
-        return;
     }
   }
 
@@ -78,7 +77,7 @@ function Login() {
             <h1 style={{ textAlign: "center", fontSize: "3.5rem" }}>LOGIN</h1>
             <div style={{ display: "flex", flexDirection: "column", background: "linear-gradient(to left,#2FC6B4,#257883,#277681,#1A1F3D)", width: "100%", height: "400px", borderRadius: "13%", justifyContent: "center", color: "#fff" }}>
               <Box component="form" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "20%" }}>
-                <h2>E-mail</h2>
+                <h2>Username</h2>
                 <TextField sx={{ background: "white", borderRadius: "40px" }} id="email" variant="outlined" onChange={(e) => { setUsername(e.target.value) }} />
                 <h2>Password</h2>
                 <TextField type='password' sx={{ background: "white", borderRadius: "40px" }} id="password" variant="outlined" onChange={(e) => { setPassword(e.target.value) }} />
