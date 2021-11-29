@@ -3,6 +3,7 @@ import DashboardCard01 from "../partials/dashboard/DashboardCard01";
 import DashboardCard07 from "../partials/dashboard/DashboardCard07";
 import { colors } from "../resources/types";
 import ReportModal from "../components/ReportModal";
+import ModalData from "../components/ModalData";
 
 const Report = ({ array, status, setPage }) => {
   const [open, setOpen] = useState(false);
@@ -41,7 +42,8 @@ const Report = ({ array, status, setPage }) => {
         openModal={openModal}
       />}
 
-      <ReportModal
+      <ModalData
+        report
         array={array}
         open={open}
         setOpen={setOpen}

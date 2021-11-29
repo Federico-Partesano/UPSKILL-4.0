@@ -5,9 +5,9 @@ import successImg1 from "../images/succesIcon.svg";
 import warningImg1 from "../images/allarme.svg";
 import redXImg1 from "../images/xbuttonRed.svg";
 
-const ReportModal = ({ array, open, setOpen, selectedElement, setSelectedElement }) => {
+const ReportModal = ({ array, open, setOpen, selectedElement, setSelectedElement  }) => {
     const cancelButtonRef = useRef(null);
-    const found = selectedElement && array.find(element => element.id === selectedElement.id);
+    const found =  selectedElement && array.find(element => element.id === selectedElement.id);
 
     return (
         <>
@@ -39,7 +39,7 @@ const ReportModal = ({ array, open, setOpen, selectedElement, setSelectedElement
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                         <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                                 <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4" style={{ paddingBottom: 30 }}>
                                     <div className="mb-7">
                                         <img src={modalClosingButton} style={{ width: 40 }} onClick={() => {

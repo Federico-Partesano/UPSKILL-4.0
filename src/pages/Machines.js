@@ -8,7 +8,7 @@ import { typeApplied } from "../resources/types";
 import Header from "../partials/Header";
 import Sidebar from "../partials/Sidebar";
 import MachineTable from "../partials/machines/MachineTable";
-import ModalData from "../partials/machines/ModalData";
+import ModalData from "../components/ModalData";
 import DashboardCard07 from "../partials/dashboard/DashboardCard07";
 import ReportModalMachine from "../components/ReportModalMachine";
 import DashboardCard05 from "../partials/dashboard/DashboardCard05";
@@ -152,6 +152,7 @@ const Machines = ({ arrayGrid }) => {
                     <h1 id="title"> {title} </h1>
 
                     <ModalData
+                    
                         open={open}
                         setOpen={setOpen}
                         selectedElement={selectedElement}

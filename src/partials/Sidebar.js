@@ -130,7 +130,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             >
               <NavLink
                 exact
-                to="/"
+                to="/dashboard"
                 className={`block text-gray-200 hover:text-white transition duration-150 ${
                   page === "" && "hover:text-gray-200"
                 }`}

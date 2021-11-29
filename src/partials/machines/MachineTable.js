@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import ModalData from "./ModalData";
+import ModalData from "../../components/ModalData";
 
 const MachineTable = ({data, page}) => {
     const [modalDataVisibility, setModalDataVisibility] = useState(false);
