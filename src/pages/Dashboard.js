@@ -24,7 +24,7 @@ import Chatbot from "react-best-chatbot";
 import Report from "./Report";
 import { steps } from "../components/stepsChatBox";
 import bot from "./../images/bot.svg";
-function Dashboard({ gridDashboard }) {
+function Dashboard({ gridDashboard, notifications }) {
   const memo = useMemo(() => (
     <Chatbot
       steps={steps}
@@ -60,7 +60,11 @@ function Dashboard({ gridDashboard }) {
     <>
       <div className="flex h-screen overflow-hidden">
         {/* Sidebar */}
-        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Sidebar
+          sidebarOpen={sidebarOpen}
+          notifications={notifications}
+          setSidebarOpen={setSidebarOpen}
+        />
 
         {/* Content area */}
         <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
