@@ -31,6 +31,7 @@ const Report = ({ array, status, setPage }) => {
         }}> {status && <DashboardCard01 type={status} array={array} />} </div>
 
       {array && <DashboardCard07
+      report
         titleField={[
           "sensore",
           "valore",

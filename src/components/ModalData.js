@@ -1,4 +1,4 @@
-import React, { Fragment, useRef } from 'react';
+import React, { Fragment, useRef, useState, useEffect } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import modalClosingButton from "./../images/Xbutton.svg";
 import successImg1 from "../images/succesIcon.svg";
@@ -30,8 +30,16 @@ const T = ({found} ) => {
 </div>)
 }
 const ModalData = ({open, setOpen, selectedElement, setSelectedElement, report, array}) => {
+    // eslint-disable-next-line 
     const cancelButtonRef = useRef(null);
-    const found = (selectedElement && report && array ) && array.find(element => element.id === selectedElement.id);
+    const found = (selectedElement  && array ) && array.find(element => element.id === selectedElement.id);
+    useEffect(() =>{
+        const found2 = (selectedElement  && array ) && array.find(element => element.id === selectedElement.id);
+
+        setSelectedElement(found2);
+// eslint-disable-next-line 
+    }, [array])
+   
     return (
         <Transition.Root show={open} as={Fragment}
             enter="ease-out duration-300"

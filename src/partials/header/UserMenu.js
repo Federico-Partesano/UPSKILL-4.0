@@ -1,18 +1,26 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import Transition from '../../utils/Transition';
+import { useNavigate } from 'react-router';
 
 import UserAvatar from '../../images/user-avatar-32.png';
+import { Logout } from 'heroicons-react';
 
 function UserMenu() {
-
+  const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef(null);
   const dropdown = useRef(null);
 
+  const logout = () => {
+    localStorage.setItem("authorized", "false");
+    navigate("/", {replace: true});
+
+  }
+
   // close on click outside
-  useEffect(() => {
+  useLayoutEffect(() => {
     const clickHandler = ({ target }) => {
       if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
       setDropdownOpen(false);
@@ -22,7 +30,7 @@ function UserMenu() {
   });
 
   // close if the esc key is pressed
-  useEffect(() => {
+  useLayoutEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
@@ -42,7 +50,7 @@ function UserMenu() {
       >
         <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">Acme Inc.</span>
+          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">Upskill 4.0</span>
           <svg className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400" viewBox="0 0 12 12">
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
@@ -65,7 +73,7 @@ function UserMenu() {
           onBlur={() => setDropdownOpen(false)}
         >
           <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-gray-200">
-            <div className="font-medium text-gray-800">Acme Inc.</div>
+            <div className="font-medium text-gray-800">Upskill 4.0</div>
             <div className="text-xs text-gray-500 italic">Administrator</div>
           </div>
           <ul>
@@ -79,13 +87,13 @@ function UserMenu() {
               </Link>
             </li>
             <li>
-              <Link
-                className="font-medium text-sm text-indigo-500 hover:text-indigo-600 flex items-center py-1 px-3"
+              <NavLink
+                className="font-medium text-sm flex items-center py-1 px-3 text-red-600 hover:text-red-800"
                 to="/"
-                onClick={() => setDropdownOpen(!dropdownOpen)}
+                onClick={() => logout()}
               >
-                Sign Out
-              </Link>
+                Esci
+              </NavLink>
             </li>
           </ul>
         </div>

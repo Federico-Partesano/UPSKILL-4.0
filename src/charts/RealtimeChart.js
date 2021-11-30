@@ -39,7 +39,7 @@ function RealtimeChart({
             suggestedMax: 80,
             ticks: {
               maxTicksLimit: 5,
-              callback: (value) => formatValue(value),
+              //callback: (value) => formatValue(value),
             },
           },
           x: {

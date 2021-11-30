@@ -29,7 +29,6 @@ const Machines = ({ arrayGrid }) => {
 
     useEffect(() => {
         if (localStorage.getItem("authorized") !== "true") {
-            localStorage.setItem("notAuthorized", "macchinari");
             navigate("/", { replace: true });
         };
     }, []);
@@ -152,7 +151,7 @@ const Machines = ({ arrayGrid }) => {
                     <h1 id="title"> {title} </h1>
 
                     <ModalData
-                    
+                        array={data}
                         open={open}
                         setOpen={setOpen}
                         selectedElement={selectedElement}
@@ -160,6 +159,7 @@ const Machines = ({ arrayGrid }) => {
                     />
 
                     <DashboardCard07
+                    report
                         titleField={[
                             "sensore",
                             "valore",

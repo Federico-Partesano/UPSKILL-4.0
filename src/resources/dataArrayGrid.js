@@ -12,9 +12,10 @@ const configParameter = {
   },
 };
 
-const generateElementGrid = (id, type, applied) => {
+const generateElementGrid = (id,machinaryId ,type, applied) => {
   return {
     id: id,
+    machinaryId:  machinaryId,
     status: colors.success,
     type: type,
     applied: applied,
@@ -24,17 +25,24 @@ const generateElementGrid = (id, type, applied) => {
 };
 
 export const arrayDashboardGrid = [
-  generateElementGrid(1, typeSensor.temperature, typeApplied.milkTank),
-  generateElementGrid(2, typeSensor.temperature, typeApplied.milkTank),
-  generateElementGrid(3, typeSensor.temperature, typeApplied.milkTank),
-  generateElementGrid(4, typeSensor.pressure, typeApplied.pasteurization),
-  generateElementGrid(5, typeSensor.pressure, typeApplied.pasteurization),
-  generateElementGrid(6, typeSensor.temperature, typeApplied.pasteurization),
-  generateElementGrid(7, typeSensor.temperature, typeApplied.pasteurization),
-  generateElementGrid(8, typeSensor.humidity, typeApplied.seasoning),
-  generateElementGrid(9, typeSensor.humidity, typeApplied.seasoning),
-  generateElementGrid(10, typeSensor.humidity, typeApplied.seasoning),
-  generateElementGrid(11, typeSensor.humidity, typeApplied.seasoning),
+  generateElementGrid(1,1,typeSensor.temperature, typeApplied.milkTank),
+  generateElementGrid(2,2,typeSensor.temperature, typeApplied.milkTank),
+  generateElementGrid(3,3,typeSensor.temperature, typeApplied.milkTank),
+  generateElementGrid(4,4,typeSensor.pressure, typeApplied.pasteurization),
+  generateElementGrid(5,5,typeSensor.pressure, typeApplied.pasteurization),
+  generateElementGrid(6,4,typeSensor.temperature, typeApplied.pasteurization),
+  generateElementGrid(7,5,typeSensor.temperature, typeApplied.pasteurization),
+  
+  generateElementGrid(8,6,typeSensor.humidity, typeApplied.seasoning),
+  generateElementGrid(9,7,typeSensor.humidity, typeApplied.seasoning),
+  generateElementGrid(10,8,typeSensor.humidity, typeApplied.seasoning),
+  generateElementGrid(11,9,typeSensor.humidity, typeApplied.seasoning),
+
+  generateElementGrid(12,6,typeSensor.temperature, typeApplied.seasoning),
+  generateElementGrid(13,7,typeSensor.temperature, typeApplied.seasoning),
+  generateElementGrid(14,8,typeSensor.temperature, typeApplied.seasoning),
+  generateElementGrid(15,9,typeSensor.temperature, typeApplied.seasoning),
+  
 ];
 
 export const randomValue = () => {

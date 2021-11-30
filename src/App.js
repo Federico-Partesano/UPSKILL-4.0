@@ -11,6 +11,7 @@ import "./charts/ChartjsConfig";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
+const prova = 0;
 
 function App() {
   const [gridDashboard, setgridDashboard] = useState(arrayDashboardGrid);

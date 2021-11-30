@@ -1,6 +1,6 @@
 import React from "react";
 
-function DashboardCard07({ titleField, array, openModal }) {
+function DashboardCard07({ titleField, array, openModal,report }) {
   
   return (
     // xl:col-span-8
@@ -45,7 +45,7 @@ function DashboardCard07({ titleField, array, openModal }) {
               {/* Row */}
               {array.map((element) => {
                 return (
-                  <tr onClick={() => {
+                  <tr  style={ report && {  cursor: "pointer"}} onClick={() => {
                     openModal && openModal(element);
                   }}>
                     <td className="p-2">
