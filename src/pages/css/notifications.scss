@@ -12,7 +12,7 @@
 @media screen and (max-width: 600px) {
   .my-justify-center {
     justify-content: center;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .max-width {
     max-width: 100%;

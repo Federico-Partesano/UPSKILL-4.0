@@ -1,5 +1,5 @@
 import React from "react";
-
+import { typeSensor } from "../../resources/types";
 function DashboardCard07({ titleField, array, openModal, report }) {
   return (
     // xl:col-span-8
@@ -58,7 +58,15 @@ function DashboardCard07({ titleField, array, openModal, report }) {
                       </td>
 
                       <td className="p-2">
-                        <div className="text-center">{element.sensorValue}</div>
+                        <div className="text-center">
+                          {`${element.sensorValue}${
+                            element.type === typeSensor.temperature
+                              ? "°"
+                              : element.type === typeSensor.pressure
+                              ? " Pa"
+                              : " g/m³"
+                          }`}
+                        </div>
                       </td>
                       <td className="p-2">
                         <div className="text-center">{element.type}</div>

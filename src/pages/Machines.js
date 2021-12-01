@@ -144,6 +144,9 @@ const Machines = ({ arrayGrid, notifications }) => {
       data = arrayGrid.filter(
         ({ applied }) => applied === typeApplied.seasoning
       );
+      break;
+    default:
+      break;
   }
 
   return (
@@ -155,7 +158,11 @@ const Machines = ({ arrayGrid, notifications }) => {
       />
 
       <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-        <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+        <Header
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+          notifications={notifications}
+        />
 
         <div className="machines p-10">
           <h1 id="title"> {title} </h1>

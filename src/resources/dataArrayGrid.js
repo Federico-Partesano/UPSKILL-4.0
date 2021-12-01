@@ -1,6 +1,6 @@
 import { colors, typeSensor, typeApplied } from "./types";
 import dayjs from "dayjs";
-const configParameter = {
+export const configParameter = {
   milkTank: {
     temperature: { success: { min: 4, max: 34 }, warning: { min: 1, max: 40 } },
   },

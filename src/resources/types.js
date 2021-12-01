@@ -5,13 +5,13 @@ export const colors = {
 };
 
 export const typeSensor = {
-  temperature: "temperatura",
-  pressure: "pressione",
-  humidity: "umidità",
+  temperature: "Temperatura",
+  pressure: "Pressione",
+  humidity: "Umidità",
 };
 
 export const typeApplied = {
-  milkTank: "vasca del latte",
-  seasoning: "stagionatura",
-  pasteurization: "pastorizzazione",
+  milkTank: "Vasca del latte",
+  seasoning: "Stagionatura",
+  pasteurization: "Pastorizzazione",
 };
