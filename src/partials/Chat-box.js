@@ -4,7 +4,6 @@ import chat from "./../images/chat.svg";
 const ChatBox = () => {
   const [bannerOpen, setBannerOpen] = useState(true);
   const [openChatBox, setOpenChatBox] = useState(false);
-  console.log("openChatBox", openChatBox);
   return (
     <>
       <div

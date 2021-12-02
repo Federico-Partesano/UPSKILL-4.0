@@ -1,5 +1,11 @@
 import { colors, typeSensor, typeApplied } from "./types";
 import dayjs from "dayjs";
+import { pNoise } from "../perlinNoise";
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
 export const configParameter = {
   milkTank: {
     temperature: { success: { min: 4, max: 34 }, warning: { min: 1, max: 40 } },
@@ -88,10 +94,28 @@ export const arrayDashboardGrid = [
   generateElementGrid(15, 9, typeSensor.temperature, typeApplied.seasoning),
 ];
 
-export const randomValue = () => {
+export const randomValue = (perlinNoise) => {
   return arrayDashboardGrid.map((element) => {
     const arr = element.arrayValue;
-    const number = (Math.random() * 100).toFixed(2);
+    let med = 100;
+    if (element.type === typeSensor.temperature) {
+      if (element.applied === typeApplied.milkTank) {
+        med = 15;
+      } else {
+        med = 71;
+      }
+    } else if (element.type === typeSensor.humidity) {
+      med = 75;
+    } else {
+      med = 80;
+    }
+
+    const number = !perlinNoise
+      ? (Math.random() * 100).toFixed(2)
+      : (
+          med + Number((pNoise(10, getRandomArbitrary(0, 5)) * 10).toFixed(2))
+        ).toFixed(2);
+
     arr.push(number);
     return {
       ...element,
@@ -133,10 +157,9 @@ const setStatus = (number, type, applied) => {
         : colors.alarm;
 
     case typeSensor.humidity:
-      const numberHumidity = Math.random() * (100 - 60) + 60;
-      return numberHumidity > 70 && numberHumidity < 80
+      return number > 70 && number < 80
         ? colors.success
-        : numberHumidity > 65 && numberHumidity < 95
+        : number > 65 && number < 95
         ? colors.warning
         : colors.alarm;
     default:

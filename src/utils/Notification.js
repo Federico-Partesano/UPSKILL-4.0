@@ -2,8 +2,6 @@ import dayjs from "dayjs";
 import { colors, typeApplied } from "../resources/types";
 export const notificationCheck = (gridElement) => {
   if (gridElement.applied === typeApplied.milkTank) {
-    console.log("applied", gridElement.status);
-
     switch (true) {
       case (Math.abs(dayjs().diff(gridElement.insertMilkDate, "days")) > 5 &&
         !gridElement.isEmpty) ||
@@ -40,7 +38,6 @@ export const generateNotification = (gridElement) => {
         title = `Controllo tempestivo macchinario ${gridElement.applied}`;
         message2 = `I valori del sensore di ${gridElement.id} sono oltre il limite ${gridElement.sensorValue}, si consiglia un controllo tempestivo!`;
       }
-      console.log("insert", gridElement);
       if (
         Math.abs(dayjs().diff(gridElement.insertMilkDate, "days")) > 5 &&
         !gridElement.isEmpty

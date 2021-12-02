@@ -25,7 +25,6 @@ function Notifications({ notifications }) {
 
   // close if the esc key is pressed
   useEffect(() => {
-    console.log(notifications);
     const keyHandler = ({ keyCode }) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);

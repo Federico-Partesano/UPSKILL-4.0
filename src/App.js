@@ -6,7 +6,7 @@ import {
   notificationCheck,
   generateNotification,
 } from "../src/utils/Notification";
-
+import { pNoise } from "./perlinNoise";
 import "./css/style.scss";
 
 import { focusHandling } from "cruip-js-toolkit";
@@ -17,6 +17,9 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import Notifications from "./pages/Notications";
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
 const prova = 0;
 
 function App() {
@@ -25,7 +28,11 @@ function App() {
 
   useEffect(() => {
     const random = setInterval(() => {
-      setgridDashboard(randomValue());
+      // console.log(
+      //   "pNoise",
+      //   Number((pNoise(50, getRandomArbitrary(0, 9) / 10) * 100).toFixed(2))
+      // );
+      setgridDashboard(randomValue(true));
     }, 4000);
     return () => {
       clearInterval(random);
@@ -46,7 +53,6 @@ function App() {
         .filter((s) => notificationCheck(s))
         .map((t) => generateNotification(t)),
     ]);
-    console.log("length", notifications);
   }, [gridDashboard]);
 
   return (

@@ -44,7 +44,6 @@ const DashboardCard05 = ({ array, title = "Valori in RealTime" }) => {
   const [slicedLabels, setSlicedLabels] = useState(
     generateDates().slice(0, 10).reverse()
   );
-  //console.log(array[0][array[0].length - 1]);
 
   // Fake update every 2 seconds
   useEffect(() => {

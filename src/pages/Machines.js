@@ -35,10 +35,6 @@ const Machines = ({ arrayGrid, notifications }) => {
 
   //console.log(arrayDashboardGrid);
 
-  useEffect(() => {
-    console.log(selectedElement);
-  }, [selectedElement]);
-
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let title, data;
