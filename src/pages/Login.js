@@ -1,100 +1,176 @@
 import React, { useState, useEffect } from "react";
-import Background1 from "../images/upskill-21.svg";
-import Background2 from "../images/upskill-22.svg";
-import { Grid, Box, Button, useMediaQuery, TextField } from "@mui/material";
+import logo from "./logoWhite.svg";
+import { TextField, Button } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+//npm install @mui/material @mui/styled-engine-sc styled-components @emotion/react @emotion/styled
+//riga 91/92 cambiare il colore red con il colore del bottone in hover
+//riga 44 se è il caso cambiate l'url del navigate
+// oggetto in riga 28 (subscribeUsers) sono i dati per il login
 
-  const isSmall = useMediaQuery('(max-width:600px)');
-  const isMedium = useMediaQuery('(max-width:900px)');
+function Login() {
+  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("");
+  const [wrogLogin, setWrongLogin] = useState(false);
+  const [focusEmail, setFocusEmail] = useState(false);
+  const [focusPass, setFocusPass] = useState(false);
+  const focusHandlerEmail = () => {
+    setFocusEmail(true);
+    focusPass && setFocusPass(false);
+  };
+  const focusHandlerPass = () => {
+    setFocusPass(true);
+    focusEmail && setFocusEmail(false);
+  };
   const navigate = useNavigate();
+
+  useEffect(() => {
+    localStorage.getItem("authorized", "true") === "true" &&
+      navigate("./dashboard");
+    // eslint-disable-next-line
+  }, []);
 
   const subscribedUsers = [
     {
-      username: "andrea",
-      password: "sonoAndrea",
+      username: "admin",
+      password: "admin",
     },
-    {
-      username: "federico",
-      password: "sonoFederico"
+  ];
+
+  const loginHandler = () => {
+    if (
+      subscribedUsers.some(
+        (user, index, array) =>
+          userName === user.username && array[index].password === password
+      )
+    ) {
+      localStorage.setItem("authorized", "true");
+      navigate("./dashboard");
+    } else {
+      setWrongLogin(true);
+    }
+  };
+
+  const styleTextField = {
+    width: "50%",
+    textAlign: "center",
+    color: "#1E293B",
+    marginLeft: 100,
+  };
+
+  const styleWrongDiv = {
+    width: "420px",
+    minHeight: "35px",
+    backgroundColor: "black",
+    color: "white",
+    textAlign: "center",
+    paddingTop: "10px",
+    fontSize: "18px",
+    fontWeight: "600",
+  };
+
+  const PersonalInput = styled(TextField)({
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "#1E293B",
     },
-    {
-      username: "matteo",
-      password: "sonoMatteo"
-    }
-  ]
+    "& label": {
+      color: "#1E293B",
+      fontSize: "1.2rem",
+      fontWeight: "600",
+      width: "100%",
+      textAlign: "center",
+      transformOrigin: "center",
+    },
+    "& label.Mui-focused": {
+      color: "#1E293B",
+    },
+  });
 
-  const checkCredentials = () => {
-    const foundByUsername = subscribedUsers.find(user => user.username === username);
-    switch (true) {
-      case !username || !password:
-        setError(`Entrambi i campi username e password devono essere riempiti`);
-        return
-      case !foundByUsername:
-        setError(`Nessun utente è stato trovato con lo username inserito ${username}`);
-        return
-      case foundByUsername.password !== password:
-        setError(`Un utente con lo username ${username} è stato trovato ma la password inserita non corrisponde`)
-        return
-      default:
-        localStorage.setItem("authorized", "true");
-        navigate("./dashboard");
-    }
-  }
-
-  useEffect(() => {
-    localStorage.getItem("authorized") === "true" && navigate("./dashboard", { replace: true });
-    //const forbiddenScreen = localStorage.getItem("notAuthorized");
-    //forbiddenScreen && setError(`Prima di poter accedere alla schermata ${forbiddenScreen} devi effettuare il login`);
-  }, []);
+  const PersonalButton = styled(Button)({
+    backgroundColor: "#1E293B",
+    width: "180px",
+    alignSelf: "center",
+    fontWeight: "600",
+    "&:hover": {
+      backgroundColor: "red",
+    },
+  });
 
   return (
-    <>
-   
-   <Grid container style={{ height: "100vh" }}>
-        <Grid style={{ position: "relative" }} item xs={12} md={4} ><img
-          style={isSmall ? { width: "40%" } : isMedium ? { width: "25vw" } : { width: "50%" }} src={Background1} alt="background" /></Grid>
-        <Grid item xs={12} md={4}>
-          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }} >
-            <h1 style={{ textAlign: "center", fontSize: "3.5rem" }}>LOGIN</h1>
-            <div style={{ display: "flex", flexDirection: "column", background: "linear-gradient(to left,#2FC6B4,#257883,#277681,#1A1F3D)", width: "100%", height: "400px", borderRadius: "13%", justifyContent: "center", color: "#fff" }}>
-              <Box component="form" style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "20%" }}>
-                <h2>Username</h2>
-                <TextField sx={{ background: "white", borderRadius: "40px" }} id="email" variant="outlined" onChange={(e) => { setUsername(e.target.value) }} />
-                <h2>Password</h2>
-                <TextField type='password' sx={{ background: "white", borderRadius: "40px" }} id="password" variant="outlined" onChange={(e) => { setPassword(e.target.value) }} />
-                <Button style={{ color: "white", borderRadius: "10px", background: "linear-gradient(to left,#2FC6B4,#257883,#277681,#1A1F3D)", border: "1px solid white", margin: "40px auto 0", width: "50%" }} variant="outlined" size="large" onClick={checkCredentials} >Submit</Button>
-                <div
-        style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          color: "#ff0000",
-          paddingTop: 20,
-          paddingBottom: 20,
-          /*borderBottomWidth: 2,
-          borderBottomColor: "#ff0000",
-          backgroundColor: "#F20A0A",
-          position: "absolute",
-          top: 0,
-          width: "100%",*/
-        }}>{error && error}</div>
-              </Box>
-            </div>
+    <div style={{ width: "100%", height: "100vh", backgroundColor: "#1E293B" }}>
+      <div
+        style={{ diplay: "flex", justifyContent: "center", paddingTop: "35px" }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <img src={logo} height="100" width="80" alt="logo" />
+          <div
+            style={{
+              width: "420px",
+              height: "320px",
+              backgroundColor: "white",
+              marginTop: "30px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-evenly",
+            }}
+          >
+            <PersonalInput
+              value={userName}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontSize: "1.2rem",
+                  fontWeight: "600",
+                },
+              }}
+              id="email"
+              label="Email"
+              variant="standard"
+              style={styleTextField}
+              onChange={(e) => {
+                setUserName(e.target.value);
+              }}
+              floatingLabelText="Email"
+              autoFocus={focusEmail}
+              onClick={focusHandlerEmail}
+              onMouseOver={focusHandlerEmail}
+            />
+
+            <PersonalInput
+              value={password}
+              inputProps={{
+                style: { textAlign: "center", fontSize: "1.2rem" },
+              }}
+              id="standard-basic"
+              label="Password"
+              variant="standard"
+              type="password"
+              style={styleTextField}
+              onChange={(e) => setPassword(e.target.value)}
+              autoFocus={focusPass}
+              onClick={focusHandlerPass}
+              onMouseOver={focusHandlerPass}
+            />
+
+            <PersonalButton variant="contained" onClick={() => loginHandler()}>
+              Login
+            </PersonalButton>
           </div>
-        </Grid>
-        <Grid style={{ position: "relative" }}
-          item xs={12} md={4}><img alt="background2"
-            style={isSmall ? { width: "40%", marginLeft: "60%", marginTop: '10vh' } :
-              isMedium ? { width: "35vw", marginLeft: "63vw", marginTop: '15vh' } :
-                { width: "60%", marginTop: '70vh', marginLeft: "40%" }} src={Background2} />
-        </Grid>
-      </Grid>
-    </>
-  )
+          {wrogLogin && (
+            <div style={styleWrongDiv}>Wrong email or password</div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Login;

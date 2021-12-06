@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import Transition from "../../utils/Transition";
 
@@ -24,7 +24,7 @@ function Notifications({ notifications }) {
   });
 
   // close if the esc key is pressed
-  useEffect(() => {
+  useLayoutEffect(() => {
     const keyHandler = ({ keyCode }) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);

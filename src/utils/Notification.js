@@ -46,7 +46,7 @@ export const generateNotification = (gridElement) => {
           gridElement.insertMilkDate
         ).format(
           "YYYY-MM-DD HH:mm"
-        )} ha raggiunto il tempo limite senza essere stata svuotata, `;
+        )} sta raggiugendo il tempo limite senza essere stata svuotata!`;
         title = `Vasca del latte da svuotare`;
       } else if (
         Math.abs(dayjs().diff(gridElement.insertMilkDate, "days")) > 2 &&

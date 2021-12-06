@@ -24,25 +24,43 @@ import Chatbot from "react-best-chatbot";
 import Report from "./Report";
 import { steps } from "../components/stepsChatBox";
 import bot from "./../images/bot.svg";
+import logo from "./../pages/logoWhite.svg";
+
+const answers = {
+  values: {
+    first: "Bye",
+  },
+  timeInMs: {
+    first: 2000,
+  },
+};
+
 function Dashboard({ gridDashboard, notifications }) {
+  const navigate = useNavigate();
   const memo = useMemo(() => (
     <Chatbot
       steps={steps}
       style={{ primaryColor: "#1e293b", secondaryColor: "#6366f1" }}
       options={{
-        header: "Marco",
+        header: "S.T.I.M.A.",
         botAvatarSrc: bot,
-        sendingMessageCallback: (e, i) =>
-          console.log("e", e.values, "i:", e.timeInMs),
+
+        endingCallback: (e) => {
+          if (e.values[6].value !== "No") {
+            navigate(`/${e.values[1].value}`);
+          } else {
+            console.log("null");
+          }
+        },
       }}
     />
+    // navigate(`/${e.values[1].value}`
   ));
   // eslint-disable-next-line
   const { height, width } = useWindowDimension();
   const [page, setPage] = useState();
   // const [dimensionsPage, setDimensionsPage] = useState({with} = useDimensio
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (localStorage.getItem("authorized") !== "true") {
@@ -50,11 +68,6 @@ function Dashboard({ gridDashboard, notifications }) {
     }
     // eslint-disable-next-line
   }, []);
-
-  useEffect(() => {
-    // console.log("width", width, "height", height);
-    console.log(page);
-  }, [page]);
 
   return (
     <>

@@ -1,11 +1,18 @@
 import React from "react";
 import { typeSensor } from "../../resources/types";
-function DashboardCard07({ titleField, array, openModal, report }) {
+function DashboardCard07({
+  titleField,
+  array,
+  openModal,
+  report,
+  title = "Lista sensori",
+  machines = false,
+}) {
   return (
     // xl:col-span-8
     <div className="col-span-full xl:col-span-12 bg-white shadow-lg rounded-sm border border-gray-200">
       <header className="px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800">Lista sensori</h2>
+        <h2 className="font-semibold text-gray-800">{title}</h2>
       </header>
       <div className="p-3">
         {/* Table */}
@@ -27,11 +34,13 @@ function DashboardCard07({ titleField, array, openModal, report }) {
                     {titleField[2]}
                   </div>
                 </th>
-                <th className="p-2">
-                  <div className="font-semibold text-center">
-                    {titleField[3]}
-                  </div>
-                </th>
+                {!machines && (
+                  <th className="p-2">
+                    <div className="font-semibold text-center">
+                      {titleField[3]}
+                    </div>
+                  </th>
+                )}
                 <th className="p-2">
                   <div className="font-semibold text-center">
                     {titleField[4]}
@@ -53,7 +62,9 @@ function DashboardCard07({ titleField, array, openModal, report }) {
                     >
                       <td className="p-2">
                         <div className="flex items-center">
-                          <div className="text-gray-800">{element.id}</div>
+                          <div className="text-gray-800">
+                            {!machines ? element.id : element.machinaryId}
+                          </div>
                         </div>
                       </td>
 
@@ -71,10 +82,12 @@ function DashboardCard07({ titleField, array, openModal, report }) {
                       <td className="p-2">
                         <div className="text-center">{element.type}</div>
                       </td>
-                      <td className="p-2">
-                        {/* text-light-blue-500 */}
-                        <div className="text-center ">{element.applied}</div>
-                      </td>
+                      {!machines && (
+                        <td className="p-2">
+                          {/* text-light-blue-500 */}
+                          <div className="text-center ">{element.applied}</div>
+                        </td>
+                      )}
                       <td className="p-2">
                         <div className="flex justify-center">
                           <div

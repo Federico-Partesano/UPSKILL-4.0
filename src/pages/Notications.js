@@ -104,7 +104,6 @@ export default function Notications({ arrayGrid, notifications }) {
                 </div>
               );
             })}
-          ;
         </div>
       </div>
     </div>

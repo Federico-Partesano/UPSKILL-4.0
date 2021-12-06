@@ -1,60 +1,110 @@
-const welcomeText = `Ciao Benvenuto! io sono Marco, come posso tornarti utile!`;
+const welcomeText = `Benvenuto! Come posso esserti utile?`;
+const dashboardText = `Nella dashboard puoi trovare uno stato generale dei sensori, con un grafico real time di un sensore`;
+const notificationsText = `Nella pagina delle notifiche puoi trovare tutti gli avvisi ed allarmi riguardanti le anomalie dei singoli sensori, macchinari o stato di un processo`;
 
 export const steps = [
   {
     id: 1,
     content: welcomeText,
-    deelay: 3000,
-    goTo: 2,
-  },
-  {
-    id: 2,
-    // receiveInput: true,
-    content: "Ti piace il progetto sì?!",
     options: [
       {
-        content: "Sì!",
+        value: "dashboard",
+        content: "Dashboard",
         goTo: 4,
       },
+
       {
-        content: "No!",
-        goTo: 5,
+        value: "notifications",
+        content: "Notifiche",
+        goTo: 20,
+      },
+      {
+        value: "prova3",
+        content: "Macchinari",
+        goTo: 4,
       },
     ],
-  },
-  {
-    id: 3,
-    content: "Va bene allora... ",
-    goTo: 33,
-  },
-  {
-    id: 33,
-    content: "in caso di bisogno sono sempre quì, arrivederci!!",
-    end: true,
+    deelay: 3000,
   },
   {
     id: 4,
-    content: "Mi fa piacere che ti piaccia, hai qualche dubbio sul sito??",
-    options: [
-      { content: "No", goTo: 3 },
-      { content: "Sì", goTo: 55 },
-    ],
+    // receiveInput: true,
+    content: dashboardText,
+    delay: 3000,
+    goTo: 90,
   },
   {
-    id: 55,
-    content: "Su cosa?!",
-    options: [
-      { content: "Forum", goTo: 3 },
-      { content: "Macchinari", goTo: 55 },
-      { content: "Grafici", goTo: 55 },
-      { content: "In caso di problemi che faccio?!", goTo: 55 },
-    ],
-    goTo: 5,
+    id: 20,
+    // receiveInput: true,
+    content: notificationsText,
+    goTo: 6,
   },
+
   {
     id: 5,
-    content: "Mi dispiace!!",
-    end: false,
-    goTo: 6,
+    // receiveInput: true,
+    content: "Vuoi andare alla dashboard?!",
+    options: [
+      {
+        value: "dashboard",
+        content: "Sì",
+        goTo: 100,
+      },
+      {
+        value: "No",
+        content: "No",
+        goTo: 90,
+      },
+    ],
+  },
+
+  {
+    id: 6,
+    delay: 8000,
+
+    // receiveInput: true,
+    content: "Vuoi andare alle notifiche?!",
+    options: [
+      {
+        value: "notifications",
+        content: "Sì",
+        goTo: 100,
+      },
+      {
+        value: "No",
+        content: "No",
+        goTo: 90,
+      },
+    ],
+  },
+
+  {
+    delay: 0,
+    id: 100,
+    end: true,
+    content: "Okay",
+  },
+
+  {
+    id: 90,
+    content: "Vuoi aiuto su altro?",
+    options: [
+      {
+        value: "Sì",
+        content: "Sì",
+        goTo: 1,
+      },
+      {
+        value: "No",
+        content: "No",
+        goTo: 91,
+      },
+    ],
+  },
+  {
+    id: 91,
+    value: "okay",
+    content: "okay",
+    end: true,
   },
 ];

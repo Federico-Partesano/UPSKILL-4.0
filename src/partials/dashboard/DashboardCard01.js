@@ -13,7 +13,7 @@ const typeCard = {
     text: "perfettamente funzionante",
     color: colors.success,
   },
-  warning: { image: warning, text: "da revisionare", color: colors.warning },
+  warning: { image: warning, text: "da attenzionare", color: colors.warning },
   alarm: { image: redX, text: "problema rilevato", color: colors.alarm },
 };
 

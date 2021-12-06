@@ -9,7 +9,7 @@ import Header from "../partials/Header";
 import Sidebar from "../partials/Sidebar";
 // import MachineTable from "../partials/machines/MachineTable";
 import ModalData from "../components/ModalData";
-import DashboardCard07 from "../partials/dashboard/DashboardCard07";
+import D7 from "../partials/dashboard/d7";
 // import ReportModalMachine from "../components/ReportModalMachine";
 // import DashboardCard05 from "../partials/dashboard/DashboardCard05";
 
@@ -38,87 +38,6 @@ const Machines = ({ arrayGrid, notifications }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let title, data;
-
-  const vasche_latte = [
-    {
-      id: "12df12",
-      stato: 0,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 23,
-    },
-
-    {
-      id: "12df12",
-      stato: 2,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 22,
-    },
-
-    {
-      id: "12df12",
-      stato: 1,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 26,
-    },
-  ];
-
-  const pastorizzazione = [
-    {
-      id: "12df12",
-      stato: 0,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 23,
-      pressione: 1.2,
-    },
-
-    {
-      id: "12df12",
-      stato: 2,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 22,
-      pressione: 0.9,
-    },
-
-    {
-      id: "12df12",
-      stato: 1,
-      dataOra: "15/12/22 12:30",
-      statoLatte: "Ok",
-      temperatura: 26,
-      pressione: 1.4,
-    },
-  ];
-
-  const stagionatura = [
-    {
-      id: "12df12",
-      stato: 0,
-      dataOra: "15/12/22 12:30",
-      umidita: 40,
-      temperatura: 23,
-    },
-
-    {
-      id: "12df12",
-      stato: 2,
-      dataOra: "15/12/22 12:30",
-      umidita: 40,
-      temperatura: 22,
-    },
-
-    {
-      id: "12df12",
-      stato: 1,
-      dataOra: "15/12/22 12:30",
-      umidita: 40,
-      temperatura: 26,
-    },
-  ];
 
   switch (page) {
     case "vasche_latte":
@@ -171,9 +90,10 @@ const Machines = ({ arrayGrid, notifications }) => {
             setSelectedElement={setSelectedElement}
           />
 
-          <DashboardCard07
+          <D7
+            title="Lista macchinari"
             report
-            titleField={["sensore", "valore", "tipo", "applicato", "stato"]}
+            titleField={["macchinario", "valore", "tipo", "applicato", "stato"]}
             array={data}
             openModal={openModal}
           />
