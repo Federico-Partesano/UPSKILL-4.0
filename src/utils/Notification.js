@@ -1,6 +1,19 @@
 import dayjs from "dayjs";
-import { colors, typeApplied } from "../resources/types";
-export const notificationCheck = (gridElement) => {
+import { colors, typeApplied, typeSensor } from "../resources/types";
+const stringUnit = (element) => {
+  return `${
+    element.type === typeSensor.temperature
+      ? "°"
+      : element.type === typeSensor.pressure
+      ? " Pa"
+      : " g/m³"
+  } `;
+};
+
+export const notificationCheck = (gridElement, notifications) => {
+  if (notifications.some((element) => gridElement.id === element.id)) {
+    return false;
+  }
   if (gridElement.applied === typeApplied.milkTank) {
     switch (true) {
       case (Math.abs(dayjs().diff(gridElement.insertMilkDate, "days")) > 5 &&
@@ -21,6 +34,7 @@ export const notificationCheck = (gridElement) => {
       return false;
     }
   }
+
   return false;
 };
 
@@ -33,10 +47,18 @@ export const generateNotification = (gridElement) => {
     case typeApplied.milkTank:
       if (gridElement.status === colors.warning) {
         title = `Controllo consigliato macchinario ${gridElement.applied}`;
-        message2 = `I valori del sensore di ${gridElement.id} sono al limite ${gridElement.sensorValue}, si consiglia un controllo`;
+        message2 = `I valori del sensore di ${
+          gridElement.id
+        } sono vicino al limite ${gridElement.sensorValue}${stringUnit(
+          gridElement
+        )}, si consiglia un controllo`;
       } else if (gridElement.status === colors.alarm) {
         title = `Controllo tempestivo macchinario ${gridElement.applied}`;
-        message2 = `I valori del sensore di ${gridElement.id} sono oltre il limite ${gridElement.sensorValue}, si consiglia un controllo tempestivo!`;
+        message2 = `I valori del sensore di ${
+          gridElement.id
+        } sono oltre il limite ${gridElement.sensorValue}${stringUnit(
+          gridElement
+        )}, si consiglia un controllo tempestivo!`;
       }
       if (
         Math.abs(dayjs().diff(gridElement.insertMilkDate, "days")) > 5 &&
@@ -45,7 +67,7 @@ export const generateNotification = (gridElement) => {
         message1 = `La vasca ${gridElement.id} del latte riempita il ${dayjs(
           gridElement.insertMilkDate
         ).format(
-          "YYYY-MM-DD HH:mm"
+          "HH:mm YYYY-MM-DD"
         )} sta raggiugendo il tempo limite senza essere stata svuotata!`;
         title = `Vasca del latte da svuotare`;
       } else if (
@@ -62,6 +84,7 @@ export const generateNotification = (gridElement) => {
         ...gridElement,
         title: title,
         errors: { message1, message2 },
+        date: dayjs().format("HH:mm    YYYY-MM-DD"),
       };
 
     // return {...gridElement, title: }
@@ -69,16 +92,25 @@ export const generateNotification = (gridElement) => {
     default:
       if (gridElement.status === colors.warning) {
         title = `Controllo consigliato macchinario ${gridElement.applied}`;
-        message1 = `I valori del sensore di ${gridElement.id} sono al limite ${gridElement.sensorValue}, si consiglia un controllo`;
-      } else if (gridElement.status === colors.alarm) {
+        message1 = `I valori del sensore di ${
+          gridElement.id
+        } sono vicino al limite ${gridElement.sensorValue}${stringUnit(
+          gridElement
+        )}, si consiglia un controllo`;
+      } else if (gridElement.status === colors.alaVarm) {
         title = `Controllo tempestivo macchinario ${gridElement.applied}`;
-        message1 = `I valori del sensore di ${gridElement.id} sono oltre il limite ${gridElement.sensorValue}, si consiglia un controllo tempestivo!`;
+        message1 = `I valori del sensore di ${
+          gridElement.id
+        } sono oltre il limite ${gridElement.sensorValue}${stringUnit(
+          gridElement
+        )}, si consiglia un controllo tempestivo!`;
       }
 
       return {
         ...gridElement,
         title: title,
         errors: { message1, message2 },
+        date: dayjs().format("HH:mm     YYYY-MM-DD"),
       };
   }
 };

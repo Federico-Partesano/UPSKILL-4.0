@@ -103,7 +103,7 @@ function Notifications({ notifications }) {
                         } `}
                     </span>
                     <span className="block text-xs font-medium text-gray-400">
-                      Feb 12, 2021
+                      {element.date}
                     </span>
                   </NavLink>
                 </li>

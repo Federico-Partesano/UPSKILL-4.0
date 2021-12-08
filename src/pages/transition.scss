@@ -1,0 +1,31 @@
+.transition-enter {
+  transform: translateX(20px);
+  opacity: 0;
+}
+/*  Transazione in corso */
+.transition-enter.transition-enter-active {
+  transform: translateX(0px);
+  opacity: 1;
+  transition: all 0.5s ease-in;
+}
+/* Valori finali a transazione finita */
+.transition-enter-done {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.transition-exit.transition-exit-active {
+  transform: translateX(400px);
+  opacity: 0;
+  transition: all 0.5s ease-out;
+}
+
+.transition-exit {
+  transform: translateX(0px);
+  opacity: 1;
+}
+
+.transition-exit-done {
+  transform: translateX(400px);
+  opacity: 0;
+}

@@ -1,6 +1,7 @@
 const welcomeText = `Benvenuto! Come posso esserti utile?`;
 const dashboardText = `Nella dashboard puoi trovare uno stato generale dei sensori, con un grafico real time di un sensore`;
 const notificationsText = `Nella pagina delle notifiche puoi trovare tutti gli avvisi ed allarmi riguardanti le anomalie dei singoli sensori, macchinari o stato di un processo`;
+const machinesText = `Cliccando sul bottone macchinari si aprirà un menù a tendina in cui potrai selezionare il tipo di macchinario, dopo di che vedrai una tabella con tutti i macchinari di quel tipo`;
 
 export const steps = [
   {
@@ -19,12 +20,19 @@ export const steps = [
         goTo: 20,
       },
       {
-        value: "prova3",
+        value: "Machines",
         content: "Macchinari",
-        goTo: 4,
+        goTo: 50,
       },
     ],
     deelay: 3000,
+  },
+  {
+    id: 50,
+    // receiveInput: true,
+    content: machinesText,
+    delay: 3000,
+    goTo: 7,
   },
   {
     id: 4,
@@ -74,6 +82,50 @@ export const steps = [
         value: "No",
         content: "No",
         goTo: 90,
+      },
+    ],
+  },
+  {
+    id: 7,
+    delay: 8000,
+
+    // receiveInput: true,
+    content: "Vuoi vedere una lista di macchinari di un tipo?!",
+    options: [
+      {
+        value: "notifications",
+        content: "Sì",
+        goTo: 80,
+      },
+      {
+        value: "No",
+        content: "No",
+        goTo: 90,
+      },
+    ],
+  },
+
+  {
+    id: 80,
+    delay: 1000,
+
+    // receiveInput: true,
+    content: "Quale?",
+    options: [
+      {
+        value: "vasche_latte",
+        content: "vasche del latte",
+        goTo: 100,
+      },
+      {
+        value: "pastorizzazione",
+        content: "pastorizzazione",
+        goTo: 100,
+      },
+      {
+        value: "stagionatura",
+        content: "stagionatura",
+        goTo: 100,
       },
     ],
   },

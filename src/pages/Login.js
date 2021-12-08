@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
+  const [userName, setUserName] = useState("admin");
   const [wrogLogin, setWrongLogin] = useState(false);
   const [focusEmail, setFocusEmail] = useState(false);
   const [focusPass, setFocusPass] = useState(false);
@@ -141,7 +141,7 @@ function Login() {
               floatingLabelText="Email"
               autoFocus={focusEmail}
               onClick={focusHandlerEmail}
-              onMouseOver={focusHandlerEmail}
+              // onMouseOver={focusHandlerEmail}
             />
 
             <PersonalInput
@@ -157,7 +157,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               autoFocus={focusPass}
               onClick={focusHandlerPass}
-              onMouseOver={focusHandlerPass}
+              // onMouseOver={focusHandlerPass}
             />
 
             <PersonalButton variant="contained" onClick={() => loginHandler()}>

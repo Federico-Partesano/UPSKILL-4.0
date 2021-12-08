@@ -24,6 +24,8 @@ const prova = 0;
 
 function App() {
   const [gridDashboard, setgridDashboard] = useState(arrayDashboardGrid);
+  const [fillnotifications, setFillnotifications] = useState(true);
+
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
@@ -48,11 +50,13 @@ function App() {
   }, [location.pathname]); // triggered on route change
 
   useEffect(() => {
-    setNotifications([
-      ...gridDashboard
-        .filter((s) => notificationCheck(s))
-        .map((t) => generateNotification(t)),
-    ]);
+    fillnotifications &&
+      setNotifications([
+        ...gridDashboard
+          .filter((s) => notificationCheck(s, notifications))
+          .map((t) => generateNotification(t)),
+        ...notifications,
+      ]);
   }, [gridDashboard]);
 
   return (
@@ -93,6 +97,8 @@ function App() {
             <Notifications
               notifications={notifications}
               arrayGrid={gridDashboard}
+              setNotifications={setNotifications}
+              setFillNotificaions={setFillnotifications}
             />
           }
         />

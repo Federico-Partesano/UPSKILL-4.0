@@ -46,8 +46,12 @@ function Dashboard({ gridDashboard, notifications }) {
         botAvatarSrc: bot,
 
         endingCallback: (e) => {
-          if (e.values[6].value !== "No") {
-            navigate(`/${e.values[1].value}`);
+          if (
+            (e.values[6] && e.values[6].value !== "No") ||
+            (e.values[7] && e.values[7].value !== "No")
+          ) {
+            const path = e.values[80] ? e.values[80].value : e.values[1].value;
+            navigate(`/${path}`);
           } else {
             console.log("null");
           }
