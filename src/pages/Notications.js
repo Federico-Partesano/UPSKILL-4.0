@@ -13,6 +13,10 @@ import redX from "../images/xbuttonRed.svg";
 import "../pages/css/notifications.scss";
 import { colors, typeApplied } from "../resources/types";
 import Notification from "../components/notification";
+import MultiRangeSlider from "multi-range-slider-react";
+import Slider, { Range } from "rc-slider";
+import "rc-slider/assets/index.css";
+
 import "./transition.scss";
 
 export default function Notications({
@@ -21,6 +25,12 @@ export default function Notications({
   setNotifications,
   setFillNotificaions,
 }) {
+  const [minValue, set_minValue] = useState(25);
+  const [maxValue, set_maxValue] = useState(75);
+  const handleInput = (e) => {
+    set_minValue(e.minValue);
+    set_maxValue(e.maxValue);
+  };
   const [notificationsArray, setNotificationsArray] = useState(notifications);
 
   const [page, setPage] = useState();
@@ -90,6 +100,7 @@ export default function Notications({
         <h1 id="title-notifications" className="py-0 my-0">
           Notifiche
         </h1>
+
         <div className="px-4 sm:px-6 lg:px-8 py-4 w-full max-w-9xl mx-auto">
           <TransitionGroup>
             {notificationsArray &&
