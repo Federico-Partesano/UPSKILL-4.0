@@ -85,8 +85,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
               src={logo}
               alt="logo"
               viewBox="0 0 32 32"
-              width="32"
-              height="32"
+              width="50"
+              height="50"
             />
           </NavLink>
         </div>
