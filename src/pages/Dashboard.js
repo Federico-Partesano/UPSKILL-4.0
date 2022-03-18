@@ -24,7 +24,7 @@ import Chatbot from "react-best-chatbot";
 import Report from "./Report";
 import { steps } from "../components/stepsChatBox";
 import bot from "./../images/bot.svg";
-import logo from "./../pages/logoWhite.svg";
+// import logo from "./../pages/logoWhite.svg";
 
 const answers = {
   values: {

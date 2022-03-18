@@ -5,7 +5,7 @@ import { randomValue } from "./resources/dataArrayGrid";
 import {
   notificationCheck,
   generateNotification,
-} from "../src/utils/Notification";
+} from "./utils/Notification";
 import { pNoise } from "./perlinNoise";
 import "./css/style.scss";
 
@@ -17,16 +17,16 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import Notifications from "./pages/Notications";
-function getRandomArbitrary(min, max) {
+function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
 const prova = 0;
 
 function App() {
-  const [gridDashboard, setgridDashboard] = useState(arrayDashboardGrid);
+  const [gridDashboard, setgridDashboard] = useState<any>(arrayDashboardGrid);
   const [fillnotifications, setFillnotifications] = useState(true);
 
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useState<any[]>([]);
 
   useEffect(() => {
     const random = setInterval(() => {
@@ -43,18 +43,17 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    document.querySelector("html").style.scrollBehavior = "auto";
+    document!.querySelector("html")!.style.scrollBehavior = "auto";
     window.scroll({ top: 0 });
-    document.querySelector("html").style.scrollBehavior = "";
-    focusHandling("outline");
+    document!.querySelector("html")!.style.scrollBehavior = "";
   }, [location.pathname]); // triggered on route change
 
   useEffect(() => {
     fillnotifications &&
       setNotifications([
         ...gridDashboard
-          .filter((s) => notificationCheck(s, notifications))
-          .map((t) => generateNotification(t)),
+          .filter((s: any) => notificationCheck(s, notifications))
+          .map((t: any) => generateNotification(t)),
         ...notifications,
       ]);
   }, [gridDashboard]);
@@ -62,9 +61,9 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Login />}></Route>
+        <Route path="/" element={<Login />}></Route>
         <Route
-          exact
+          
           path="/dashboard"
           element={
             <Dashboard
