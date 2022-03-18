@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
+import logo from "./../images/logoWhite.svg";
 function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
   const location = useLocation();
   const { pathname } = location;
@@ -81,7 +82,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
           {/* Logo */}
           <NavLink exact to="/dashboard" className="block">
             <img
-              src={"../pages/logoWhite.svg"}
+              src={logo}
               alt="logo"
               viewBox="0 0 32 32"
               width="50"
@@ -300,7 +301,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
               </ul>
             </li>
             {/* Messages */}
-            <li
+            {/* <li
               className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
                 page === "messages" && "bg-gray-900"
               }`}
@@ -333,7 +334,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
                   <span className="text-sm font-medium">Forum</span>
                 </div>
               </NavLink>
-            </li>
+            </li> */}
             {/* Tasks */}
             {/* <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${page === 'tasks' && 'bg-gray-900'}`}>
               <NavLink exact to="/" className={`block text-gray-200 hover:text-white transition duration-150 ${page === 'tasks' && 'hover:text-gray-200'}`}>
@@ -369,7 +370,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
             >
               <NavLink
                 exact
-                to="/"
+                to="/settings"
                 className={`block text-gray-200 hover:text-white transition duration-150 ${
                   page === "settings" && "hover:text-gray-200"
                 }`}

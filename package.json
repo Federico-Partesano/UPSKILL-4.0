@@ -19,6 +19,7 @@
     "@types/react-dom": "^17.0.13",
     "alpinejs": "^3.7.0",
     "autoprefixer": "^9.8.5",
+    "axios": "^0.26.1",
     "chart.js": "^3.0.2",
     "chartjs-adapter-moment": "^1.0.0",
     "cruip-js-toolkit": "^1.1.3",

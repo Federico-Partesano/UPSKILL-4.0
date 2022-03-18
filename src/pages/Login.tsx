@@ -1,8 +1,10 @@
 import React, { useState, useEffect, CSSProperties } from "react";
-// import logo from "../images/logoWhite.svg";
+import logo from "./../images/logoWhite.svg";
 import { TextField, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import useLogin from "../hooks/useLogin";
 // import { CSSProperties } from "@mui/styled-engine";
 
 //npm install @mui/material @mui/styled-engine-sc styled-components @emotion/react @emotion/styled
@@ -12,10 +14,11 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("admin");
+  const [userName, setUserName] = useState("");
   const [wrogLogin, setWrongLogin] = useState(false);
   const [focusEmail, setFocusEmail] = useState(false);
   const [focusPass, setFocusPass] = useState(false);
+  const [fetchRegistration, isLoading] = useLogin();
   const focusHandlerEmail = () => {
     setFocusEmail(true);
     focusPass && setFocusPass(false);
@@ -27,8 +30,7 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem("authorized") === "true" &&
-      navigate("./dashboard");
+    localStorage.getItem("authorized") === "true" && navigate("./dashboard");
     // eslint-disable-next-line
   }, []);
 
@@ -39,18 +41,33 @@ function Login() {
     },
   ];
 
-  const loginHandler = () => {
-    if (
-      subscribedUsers.some(
-        (user, index, array) =>
-          userName === user.username && array[index].password === password
-      )
-    ) {
+  const loginHandler = async () => {
+    // if (
+    //   subscribedUsers.some(
+    //     (user, index, array) =>
+    //       userName === user.username && array[index].password === password
+    //   )
+    // ) {
+    try {
+      const resp = await fetchRegistration({
+        method: "POST",
+        data: {
+          name: userName,
+          password,
+          email: "provola@gmail.com",
+          createdAt: new Date(),
+        },
+      });
+      console.log("prova", resp);
+
       localStorage.setItem("authorized", "true");
       navigate("./dashboard");
-    } else {
-      setWrongLogin(true);
+    } catch (e) {
+      console.log("e", e);
     }
+    // } else {
+    //   setWrongLogin(true);
+    // }
   };
 
   const styleTextField: CSSProperties = {
@@ -111,7 +128,7 @@ function Login() {
             alignItems: "center",
           }}
         >
-          <img src={"../images/logoWhite.svg"} height="100" width="80" alt="logo" />
+          <img src={logo} height="100" width="80" alt="logo" />
           <div
             style={{
               width: "420px",
@@ -133,7 +150,7 @@ function Login() {
                 },
               }}
               id="email"
-              label="Email"
+              label="Name"
               variant="standard"
               style={styleTextField}
               onChange={(e) => {

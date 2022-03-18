@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import Notifications from "./pages/Notications";
+import Settings from "./pages/Settings";
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
@@ -98,6 +99,14 @@ function App() {
               arrayGrid={gridDashboard}
               setNotifications={setNotifications}
               setFillNotificaions={setFillnotifications}
+            />
+          }
+        />
+           <Route
+          path="/settings"
+          element={
+            <Settings notifications={notifications}
+
             />
           }
         />
