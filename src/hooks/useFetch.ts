@@ -8,15 +8,12 @@ interface IuseFetch {
 
 const useFetch = (): IuseFetch => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
 
   const callApi = async <T>(config: AxiosRequestConfig<any>) => {
- 
-      setIsLoading(false);
-      const { data } = await axios.request<T>(config);
       setIsLoading(true);
+      const { data } = await axios.request<T>(config);
+      setIsLoading(false);
       return data;
-    
   };
 
   return { callApi, isLoading };
