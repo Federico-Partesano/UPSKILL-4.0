@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
-import logo from "./logoWhite.svg";
+import React, { useState, useEffect, CSSProperties } from "react";
+// import logo from "../images/logoWhite.svg";
 import { TextField, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+// import { CSSProperties } from "@mui/styled-engine";
 
 //npm install @mui/material @mui/styled-engine-sc styled-components @emotion/react @emotion/styled
 //riga 91/92 cambiare il colore red con il colore del bottone in hover
@@ -26,7 +27,7 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem("authorized", "true") === "true" &&
+    localStorage.getItem("authorized") === "true" &&
       navigate("./dashboard");
     // eslint-disable-next-line
   }, []);
@@ -52,22 +53,22 @@ function Login() {
     }
   };
 
-  const styleTextField = {
+  const styleTextField: CSSProperties = {
     width: "50%",
     textAlign: "center",
     color: "#1E293B",
     marginLeft: 100,
   };
 
-  const styleWrongDiv = {
+  const styleWrongDiv: CSSProperties = {
     width: "420px",
     minHeight: "35px",
     backgroundColor: "black",
     color: "white",
     textAlign: "center",
     paddingTop: "10px",
-    fontSize: "18px",
-    fontWeight: "600",
+    fontSize: 18,
+    fontWeight: 600,
   };
 
   const PersonalInput = styled(TextField)({
@@ -89,9 +90,9 @@ function Login() {
 
   const PersonalButton = styled(Button)({
     backgroundColor: "#1E293B",
-    width: "180px",
+    width: 180,
     alignSelf: "center",
-    fontWeight: "600",
+    fontWeight: 600,
     "&:hover": {
       backgroundColor: "red",
     },
@@ -100,7 +101,7 @@ function Login() {
   return (
     <div style={{ width: "100%", height: "100vh", backgroundColor: "#1E293B" }}>
       <div
-        style={{ diplay: "flex", justifyContent: "center", paddingTop: "35px" }}
+        style={{ display: "flex", justifyContent: "center", paddingTop: 35 }}
       >
         <div
           style={{
@@ -110,7 +111,7 @@ function Login() {
             alignItems: "center",
           }}
         >
-          <img src={logo} height="100" width="80" alt="logo" />
+          <img src={"../images/logoWhite.svg"} height="100" width="80" alt="logo" />
           <div
             style={{
               width: "420px",
@@ -128,7 +129,7 @@ function Login() {
                 style: {
                   textAlign: "center",
                   fontSize: "1.2rem",
-                  fontWeight: "600",
+                  fontWeight: 600,
                 },
               }}
               id="email"
@@ -138,7 +139,6 @@ function Login() {
               onChange={(e) => {
                 setUserName(e.target.value);
               }}
-              floatingLabelText="Email"
               autoFocus={focusEmail}
               onClick={focusHandlerEmail}
               // onMouseOver={focusHandlerEmail}

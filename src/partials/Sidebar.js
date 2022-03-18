@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "./../pages/logoWhite.svg";
 function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
   const location = useLocation();
   const { pathname } = location;
@@ -82,7 +81,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
           {/* Logo */}
           <NavLink exact to="/dashboard" className="block">
             <img
-              src={logo}
+              src={"../pages/logoWhite.svg"}
               alt="logo"
               viewBox="0 0 32 32"
               width="50"
