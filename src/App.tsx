@@ -13,7 +13,8 @@ import { focusHandling } from "cruip-js-toolkit";
 import "./charts/ChartjsConfig";
 
 // Import pages
-import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import SignIn from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import Notifications from "./pages/Notications";
@@ -62,7 +63,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />}></Route>
+        <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/signin" element={<SignIn />}></Route>
         <Route
           
           path="/dashboard"
