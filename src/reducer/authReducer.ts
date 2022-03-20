@@ -1,18 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { User } from "../models/RespSignIn";
 
-type State = Record<'tokenJwt', string | undefined>
+interface State {
+  tokenJwt: string | undefined;
+  user: User | undefined;
+}
 const INITIAL__STATE: State = {
-    tokenJwt: undefined,
-  }
+  tokenJwt: undefined,
+  user: undefined,
+};
 
 const authReducer = createSlice({
-    name: "auth",
-    initialState: INITIAL__STATE,
-    reducers: {
-        getAuth: ({tokenJwt}, action) => (tokenJwt = action.payload),
-        resetAuth: ({tokenJwt}) => (tokenJwt = undefined),
-    },
-  });
-  
-  export const { getAuth } = authReducer.actions;
-  export default authReducer.reducer;
+  name: "auth",
+  initialState: INITIAL__STATE,
+  reducers: {
+    getAuth: (state, { payload: { tokenJwt, user } }) => ({
+      ...state,
+      tokenJwt: tokenJwt,
+      user: user,
+    }),
+
+    resetAuth: (state) => ({ ...state, tokenJwt: undefined, user: undefined }),
+  },
+});
+
+export const { getAuth, resetAuth } = authReducer.actions;
+export const authReducerActions = authReducer.actions;
+export default authReducer.reducer;

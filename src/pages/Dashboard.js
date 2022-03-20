@@ -24,6 +24,7 @@ import Chatbot from "react-best-chatbot";
 import Report from "./Report";
 import { steps } from "../components/stepsChatBox";
 import bot from "./../images/bot.svg";
+import useSignIn from "../hooks/useSignIn";
 // import logo from "./../pages/logoWhite.svg";
 
 const answers = {
@@ -36,6 +37,7 @@ const answers = {
 };
 
 function Dashboard({ gridDashboard, notifications }) {
+  const {tokenJwt} = useSignIn();
   const navigate = useNavigate();
   const memo = useMemo(() => (
     <Chatbot
@@ -67,8 +69,8 @@ function Dashboard({ gridDashboard, notifications }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem("authorized") !== "true") {
-      navigate("/", { replace: true });
+    if (!tokenJwt) {
+      navigate("/signin", { replace: true });
     }
     // eslint-disable-next-line
   }, []);

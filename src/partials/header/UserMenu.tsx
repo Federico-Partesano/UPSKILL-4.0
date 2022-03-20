@@ -1,42 +1,51 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import Transition from '../../utils/Transition';
-import { useNavigate } from 'react-router';
-
-import UserAvatar from '../../images/user-avatar-32.png';
-import { Logout } from 'heroicons-react';
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { Link, NavLink } from "react-router-dom";
+import Transition from "../../utils/Transition";
+import { useNavigate } from "react-router";
+// import useDispatchRedux from "../../hooks/useDispatchRedux";
+import UserAvatar from "../../images/user-avatar-32.png";
+import { Logout } from "heroicons-react";
+import { useDispatch } from "react-redux";
+import { resetAuth } from "../../reducer/authReducer";
 
 function UserMenu() {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const trigger = useRef(null);
-  const dropdown = useRef(null);
+  const trigger = useRef<any>(null);
+  const dropdown = useRef<any>(null);
 
-  const logout = () => {
-    localStorage.setItem("authorized", "false");
-    navigate("/", {replace: true});
-
-  }
+  const logout = () => {   
+ 
+    dispatch(resetAuth());
+    navigate("/signin", { replace: true });
+  };
 
   // close on click outside
   useLayoutEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!dropdownOpen || dropdown.current.contains(target) || trigger.current.contains(target)) return;
+    const clickHandler = ({ target }: any) => {
+      if (
+        !dropdownOpen ||
+        dropdown.current!.contains(target) ||
+        trigger.current!.contains(target)
+      )
+        return;
       setDropdownOpen(false);
     };
-    document.addEventListener('click', clickHandler);
-    return () => document.removeEventListener('click', clickHandler);
+    document.addEventListener("click", clickHandler);
+    return () => document.removeEventListener("click", clickHandler);
   });
 
   // close if the esc key is pressed
   useLayoutEffect(() => {
-    const keyHandler = ({ keyCode }) => {
+    const keyHandler = ({ keyCode }: any) => {
       if (!dropdownOpen || keyCode !== 27) return;
       setDropdownOpen(false);
     };
-    document.addEventListener('keydown', keyHandler);
-    return () => document.removeEventListener('keydown', keyHandler);
+    document.addEventListener("keydown", keyHandler);
+    return () => document.removeEventListener("keydown", keyHandler);
   });
 
   return (
@@ -48,16 +57,28 @@ function UserMenu() {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img className="w-8 h-8 rounded-full" src={UserAvatar} width="32" height="32" alt="User" />
+        <img
+          className="w-8 h-8 rounded-full"
+          src={UserAvatar}
+          width="32"
+          height="32"
+          alt="User"
+        />
         <div className="flex items-center truncate">
-          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">Upskill 4.0</span>
-          <svg className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400" viewBox="0 0 12 12">
+          <span className="truncate ml-2 text-sm font-medium group-hover:text-gray-800">
+            Upskill 4.0
+          </span>
+          <svg
+            className="w-3 h-3 flex-shrink-0 ml-1 fill-current text-gray-400"
+            viewBox="0 0 12 12"
+          >
             <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
           </svg>
         </div>
       </button>
 
       <Transition
+        appear={""}
         className="origin-top-right z-10 absolute top-full right-0 min-w-44 bg-white border border-gray-200 py-1.5 rounded shadow-lg overflow-hidden mt-1"
         show={dropdownOpen}
         enter="transition ease-out duration-200 transform"
@@ -86,20 +107,16 @@ function UserMenu() {
                 Settings
               </Link>
             </li>
-            <li>
-              <NavLink
-                className="font-medium text-sm flex items-center py-1 px-3 text-red-600 hover:text-red-800"
-                to="/"
-                onClick={() => logout()}
-              >
+            <li onClick={() => logout()}>
+              <p className="font-medium text-sm flex items-center py-1 px-3 text-red-600 hover:text-red-800">
                 Esci
-              </NavLink>
+              </p>
             </li>
           </ul>
         </div>
       </Transition>
     </div>
-  )
+  );
 }
 
 export default UserMenu;

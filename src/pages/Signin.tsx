@@ -1,19 +1,20 @@
-import React, { useState, useEffect, FormEventHandler, FormEvent } from "react";
+import React, { useState, useEffect, FormEventHandler, FormEvent, Fragment } from "react";
 import logo from "./../images/logoWhite.svg";
-import { useNavigate } from "react-router-dom";
+import { NavigateOptions, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./Signin.scss";
 import useSignIn from "../hooks/useSignIn";
+import Loading from "../components/loading/Loading";
 function SignIn() {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const {fetchSignIn, isLoading, error} = useSignIn();
+  const {fetchSignIn, isLoading, error, tokenJwt} = useSignIn();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem("authorized") === "true" && navigate("./dashboard");
+    // localStorage.getItem("authorized") === "true" && navigate("./dashboard", {replace: true});
     // eslint-disable-next-line
   }, []);
 
@@ -35,7 +36,8 @@ function SignIn() {
         },
       });
       if(resp){
-          navigate("./dashboard");
+          console.log("🚀 ~ file: Signin.tsx ~ line 38 ~ handleSubmit ~ resp", resp)
+        //   navigate("/dashboard", {replace: true});
       }
     // } else {
     //   setWrongLogin(true);
@@ -110,10 +112,13 @@ function SignIn() {
   };
 
   return (
+    <Fragment>
+    {isLoading && <Loading /> }
     <div className="my__container">
       <img src={logo} className="logo" alt="logo" />
       {renderForm()}
     </div>
+    </Fragment>
   );
 }
 

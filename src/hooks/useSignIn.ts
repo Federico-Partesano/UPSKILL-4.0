@@ -5,6 +5,7 @@ import { getUrlApi } from "../endpoints";
 import { useDispatch, useSelector } from "react-redux";
 import { getAuth } from "../reducer/authReducer";
 import { RootState } from "../reducer";
+import { IRespSignIn } from "../models/RespSignIn";
 
 type IBody = Record<"email" | "password", string>;
 
@@ -24,13 +25,13 @@ const useSignIn = (): IuseSignIn => {
 
   const fetchSignIn = async (config: AxiosRequestConfig<IBody>) => {
 
-      const resp = await callApi<{ message: string; tokenJwt: string }>({
+      const resp = await callApi<IRespSignIn>({
         ...config,
         url: getUrlApi("auth/signin"),
       });
       if(!resp)return;
-      const { message, tokenJwt } = resp;
-      message === "ok" && dispatch(getAuth(tokenJwt));
+      const { message, tokenJwt, user } = resp;
+      message === "ok" && dispatch(getAuth({tokenJwt, user}));
       return resp;
   };
 

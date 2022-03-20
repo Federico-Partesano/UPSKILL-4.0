@@ -17,9 +17,9 @@ const useFetch = (): IuseFetch => {
       try {
       const { data } = await axios.request<T>(config);
       return data;
-    } catch ({response:{data:{message}}}: any) {
-      console.log('error', message);
-      setError(message as string);
+    } catch (e: any) {
+      const message = (e.response?.data?.message || e.toJSON()?.message)
+      typeof message === "string" && setError(message as string);
     }
     setIsLoading(false);
 
