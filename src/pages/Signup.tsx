@@ -5,6 +5,7 @@ import useSignUp from "../hooks/useSignUp";
 import { NavLink } from "react-router-dom";
 import "./Signup.scss";
 import Loading from "../components/loading/Loading";
+import { setStorage } from "../utils/localStorage";
 function SignUp() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ function SignUp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.getItem("authorized") === "true" && navigate("./dashboard");
+    setStorage("get", "tokenJwt") && navigate("./dashboard");
     // eslint-disable-next-line
   }, []);
 
@@ -26,7 +27,7 @@ function SignUp() {
           name: userName,
           password,
           email,
-          createdAt: new Date(),
+          createdAt: new Date().getTime(),
         },
       });
       console.log("prova", resp);

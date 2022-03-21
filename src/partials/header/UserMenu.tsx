@@ -1,15 +1,11 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useRef, useLayoutEffect } from "react";
+import { Link } from "react-router-dom";
 import Transition from "../../utils/Transition";
 import { useNavigate } from "react-router";
 // import useDispatchRedux from "../../hooks/useDispatchRedux";
 import UserAvatar from "../../images/user-avatar-32.png";
-import { Logout } from "heroicons-react";
-import { useDispatch } from "react-redux";
-import { resetAuth } from "../../reducer/authReducer";
 
 function UserMenu() {
-  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -18,8 +14,7 @@ function UserMenu() {
   const dropdown = useRef<any>(null);
 
   const logout = () => {   
- 
-    dispatch(resetAuth());
+    localStorage.removeItem("tokenJwt");
     navigate("/signin", { replace: true });
   };
 

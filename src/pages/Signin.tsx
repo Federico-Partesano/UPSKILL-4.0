@@ -9,7 +9,7 @@ function SignIn() {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const {fetchSignIn, isLoading, error, tokenJwt} = useSignIn();
+  const {fetchSignIn, isLoading, error} = useSignIn();
 
   const navigate = useNavigate();
 

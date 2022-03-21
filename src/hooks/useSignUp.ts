@@ -4,7 +4,7 @@ import useFetch from "./useFetch";
 import {getUrlApi} from "../endpoints";
 
 type IBody = Record<"name" | "email" | "password", string> & {
-  createdAt: Date;
+  createdAt: number;
 };
 
 type IuseSignUp = {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { arrayDashboardGrid } from "./resources/dataArrayGrid";
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { randomValue } from "./resources/dataArrayGrid";
-import {
-  notificationCheck,
-  generateNotification,
-} from "./utils/Notification";
+import { notificationCheck, generateNotification } from "./utils/Notification";
 import { pNoise } from "./perlinNoise";
 import "./css/style.scss";
+import useSignIn from "./hooks/useSignIn";
 
 import { focusHandling } from "cruip-js-toolkit";
 import "./charts/ChartjsConfig";
@@ -22,9 +20,8 @@ import Settings from "./pages/Settings";
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
-const prova = 0;
-
 function App() {
+  const { tokenJwt } = useSignIn();
   const [gridDashboard, setgridDashboard] = useState<any>(arrayDashboardGrid);
   const [fillnotifications, setFillnotifications] = useState(true);
 
@@ -57,13 +54,14 @@ function App() {
           .filter((s: any) => notificationCheck(s, notifications))
           .map((t: any) => generateNotification(t)),
         ...notifications,
-      ]);      
+      ]);
   }, [gridDashboard]);
 
   return (
     <>
       <Routes>
         <Route path="/signup" element={<Signup />}></Route>
+
         <Route path="/signin" element={<SignIn />}></Route>
         <Route
           path="/dashboard"
@@ -103,14 +101,16 @@ function App() {
             />
           }
         />
-           <Route
+        <Route
           path="/settings"
           element={
-            <Settings notifications={notifications}
-
+            <Settings
+              gridDashboard={gridDashboard}
+              notifications={notifications}
             />
           }
         />
+        <Route path="*" element={<Navigate to={`/${tokenJwt ? 'dashboard' : 'signin'}`} replace />}></Route>
       </Routes>
     </>
   );
