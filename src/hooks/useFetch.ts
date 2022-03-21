@@ -16,12 +16,14 @@ const useFetch = (): IuseFetch => {
       setIsLoading(true);
       try {
       const { data } = await axios.request<T>(config);
+      setIsLoading(false);
       return data;
+
     } catch (e: any) {
       const message = (e.response?.data?.message || e.toJSON()?.message)
       typeof message === "string" && setError(message as string);
+      setIsLoading(false);
     }
-    setIsLoading(false);
 
   };
 

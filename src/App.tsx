@@ -57,7 +57,7 @@ function App() {
           .filter((s: any) => notificationCheck(s, notifications))
           .map((t: any) => generateNotification(t)),
         ...notifications,
-      ]);
+      ]);      
   }, [gridDashboard]);
 
   return (

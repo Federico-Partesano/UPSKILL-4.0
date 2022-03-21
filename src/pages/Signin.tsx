@@ -37,7 +37,7 @@ function SignIn() {
       });
       if(resp){
           console.log("🚀 ~ file: Signin.tsx ~ line 38 ~ handleSubmit ~ resp", resp)
-        //   navigate("/dashboard", {replace: true});
+          navigate("/dashboard", {replace: true});
       }
     // } else {
     //   setWrongLogin(true);
