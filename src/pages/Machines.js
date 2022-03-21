@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "../partials/machines/css/machines.scss";
 // import { arrayDashboardGrid, randomValue } from "../resources/dataArrayGrid";
 import { typeApplied } from "../resources/types";
+import useSignIn from "../hooks/useSignIn";
 
 //COMPONENTS
 import Header from "../partials/Header";
@@ -14,6 +15,7 @@ import D7 from "../partials/dashboard/d7";
 // import DashboardCard05 from "../partials/dashboard/DashboardCard05";
 
 const Machines = ({ arrayGrid, notifications }) => {
+  const {tokenJwt} = useSignIn();
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
@@ -28,9 +30,10 @@ const Machines = ({ arrayGrid, notifications }) => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("authorized") !== "true") {
-      navigate("/", { replace: true });
+    if (!tokenJwt) {
+      navigate("/signin", { replace: true });
     }
+    // eslint-disable-next-line
   }, []);
 
   //console.log(arrayDashboardGrid);

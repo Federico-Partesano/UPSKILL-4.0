@@ -16,6 +16,7 @@ import Notification from "../components/notification";
 import MultiRangeSlider from "multi-range-slider-react";
 import Slider, { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
+import useSignIn from "../hooks/useSignIn";
 
 import "./transition.scss";
 
@@ -25,6 +26,7 @@ export default function Notications({
   setNotifications,
   setFillNotificaions,
 }) {
+  const {tokenJwt} = useSignIn();
   const [minValue, set_minValue] = useState(25);
   const [maxValue, set_maxValue] = useState(75);
   const handleInput = (e) => {
@@ -39,11 +41,11 @@ export default function Notications({
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (localStorage.getItem("authorized") !== "true") {
-      navigate("/", { replace: true });
+    if (!tokenJwt) {
+      navigate("/signin", { replace: true });
     }
-  });
-
+    // eslint-disable-next-line
+  }, []);
   const HandlerClickTrash = () => {
     setNotifications([]);
     setFillNotificaions(false);
