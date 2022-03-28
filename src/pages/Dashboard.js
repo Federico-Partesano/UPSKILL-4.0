@@ -37,7 +37,7 @@ const answers = {
 };
 
 function Dashboard({ gridDashboard, notifications }) {
-  const {tokenJwt} = useSignIn();
+  const { tokenJwt } = useSignIn();
   const navigate = useNavigate();
   const memo = useMemo(() => (
     <Chatbot

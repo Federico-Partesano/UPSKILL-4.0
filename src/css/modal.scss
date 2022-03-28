@@ -10,9 +10,18 @@
   left: 0;
 
   .modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow-y: scroll;
+    min-width: 500px;
     max-height: 85%;
+
     background: #fff;
+
+    padding: 10px;
+
+    position: relative;
 
     #modal_title {
       padding-bottom: 20px;
@@ -21,10 +30,41 @@
       font-weight: bold;
     }
 
+    .modal_content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      padding: 20px;
+
+      .input_container {
+        width: 100%;
+        margin-top: 20px;
+
+        input {
+          width: 100%;
+          outline: none;
+        }
+      }
+    }
+
     #close_btn {
       width: 50px;
       padding: 10px;
       cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #confirm-btn {
+      margin-top: 40px;
+      color: #fff;
+      background: #1e293b;
+      padding: 12px 24px;
+      outline: none;
+      border-radius: 6px;
     }
   }
 }

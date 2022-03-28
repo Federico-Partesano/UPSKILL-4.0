@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuth } from "../reducer/authReducer";
 import { RootState } from "../reducer";
 import { IRespSignIn } from "../models/RespSignIn";
-import { setStorage } from "../utils/localStorage";
+import { getStorageItem, setStorageItem } from "../utils/localStorage";
 
 type IBody = Record<"email" | "password", string>;
 
@@ -20,7 +20,7 @@ type IuseSignIn = {
   }
 const useSignIn = (): IuseSignIn => {
   const dispatch = useDispatch();
-  const tokenJwt = setStorage("get", "tokenJwt");
+  const tokenJwt = getStorageItem("tokenJwt");
 
   const { callApi, isLoading, error } = useFetch();
 
@@ -33,7 +33,7 @@ const useSignIn = (): IuseSignIn => {
       if(!resp)return;
       const { message, tokenJwt, user } = resp;
       if(message === "ok"){
-          setStorage("set", "tokenJwt",tokenJwt);
+          setStorageItem("tokenJwt",tokenJwt);
         dispatch(getAuth({tokenJwt, user}));
       }
       return resp;

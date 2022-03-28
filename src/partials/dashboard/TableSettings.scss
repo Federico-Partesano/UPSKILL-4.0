@@ -1,0 +1,12 @@
+.edit-icon-container {
+  display: flex;
+  justify-content: center;
+
+  #edit-icon-btn {
+    padding: 10px;
+
+    #edit-icon {
+      width: 40px;
+    }
+  }
+}

@@ -5,7 +5,7 @@ import useSignUp from "../hooks/useSignUp";
 import { NavLink } from "react-router-dom";
 import "./Signup.scss";
 import Loading from "../components/loading/Loading";
-import { setStorage } from "../utils/localStorage";
+import { getStorageItem } from "../utils/localStorage";
 function SignUp() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -15,25 +15,25 @@ function SignUp() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setStorage("get", "tokenJwt") && navigate("./dashboard");
+    getStorageItem("tokenJwt") && navigate("./dashboard");
     // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-      const resp = await fetchSignUp({
-        method: "POST",
-        data: {
-          name: userName,
-          password,
-          email,
-          createdAt: new Date().getTime(),
-        },
-      });
-      console.log("prova", resp);
+    const resp = await fetchSignUp({
+      method: "POST",
+      data: {
+        name: userName,
+        password,
+        email,
+        createdAt: new Date().getTime(),
+      },
+    });
+    console.log("prova", resp);
 
-      // navigate("./dashboard");
- 
+    // navigate("./dashboard");
+
     // } else {
     //   setWrongLogin(true);
     // }
@@ -125,11 +125,11 @@ function SignUp() {
 
   return (
     <Fragment>
-     {isLoading && <Loading /> }
-    <div className="my__container">
-      <img src={logo} className="logo" alt="logo" />
-      {renderForm()}
-    </div>
+      {isLoading && <Loading />}
+      <div className="my__container">
+        <img src={logo} className="logo" alt="logo" />
+        {renderForm()}
+      </div>
     </Fragment>
   );
 }
