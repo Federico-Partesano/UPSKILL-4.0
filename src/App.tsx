@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { arrayDashboardGrid } from "./resources/dataArrayGrid";
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Routes, Route, useLocation, Navigate, useNavigate } from "react-router-dom";
 import { randomValue } from "./resources/dataArrayGrid";
 import { notificationCheck, generateNotification } from "./utils/Notification";
 import { pNoise } from "./perlinNoise";
@@ -17,6 +17,12 @@ import Dashboard from "./pages/Dashboard";
 import Machines from "./pages/Machines";
 import Notifications from "./pages/Notications";
 import Settings from "./pages/Settings";
+import Profile from "./pages/Profile/Profile";
+import axios from "axios";
+import { getUrlApi } from "./endpoints";
+import { getStorageItem } from "./utils/localStorage";
+import { RespMachines } from "./models/RespMachines";
+import { convertMachiners } from "./utils/convertMachines";
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
@@ -27,14 +33,29 @@ function App() {
 
   const [notifications, setNotifications] = useState<any[]>([]);
 
+
+  useEffect(() => {
+   
+  }, [])
+  
+  
+
   useEffect(() => {
     const random = setInterval(() => {
-      // console.log(
-      //   "pNoise",
-      //   Number((pNoise(50, getRandomArbitrary(0, 9) / 10) * 100).toFixed(2))
-      // );
-      setgridDashboard(randomValue(true));
-    }, 4000);
+      (async() => {
+        const {data} = await axios.get<RespMachines>(getUrlApi("sensors/machines"),
+        { headers: {
+          Authorization: `Bearer ${getStorageItem("tokenJwt")}`,
+        },}
+        );
+  
+        console.log('data',data); 
+        console.log('mock', arrayDashboardGrid);
+        setgridDashboard(convertMachiners(data.payload));
+
+      })()
+      
+    }, 1000);
     return () => {
       clearInterval(random);
     };
@@ -107,6 +128,16 @@ function App() {
             <Settings
               gridDashboard={gridDashboard}
               notifications={notifications}
+            />
+          }
+        />
+
+<Route
+          path="/profile"
+          element={
+            <Profile
+            gridDashboard={gridDashboard}
+            notifications={notifications}
             />
           }
         />

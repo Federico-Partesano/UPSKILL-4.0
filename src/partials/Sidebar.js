@@ -409,6 +409,25 @@ function Sidebar({ sidebarOpen, setSidebarOpen, notifications }) {
                 </div>
               </NavLink>
             </li>
+
+
+            <li
+              className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+                page === "profile" && "bg-gray-900"
+              }`}
+            >
+              <NavLink
+                exact
+                to="/profile"
+                className={`block text-gray-200 hover:text-white transition duration-150 ${
+                  page === "settings" && "hover:text-gray-200"
+                }`}
+              >
+                <div className="flex flex-grow">
+                <svg id="Livello_1" style={{fill: "rgba(148, 163, 184, 1)", marginRight: "0.75rem"}} width={24} height={24} data-name="Livello 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 29.94"><defs><style></style></defs><path class="cls-1" d="M27.66,30A12.68,12.68,0,0,0,16.59,17.48,12.28,12.28,0,0,0,6.48,20.7a12.28,12.28,0,0,0-4.06,8c-.06.44,0,.89-.08,1.34H0v-.88c.08-.57.13-1.15.23-1.73A15,15,0,0,1,9.85,15.94l.21-.09A8.6,8.6,0,0,1,6.35,8.3,8.32,8.32,0,0,1,9.43,2.1a8.66,8.66,0,1,1,10.5,13.74l.3.13a14.82,14.82,0,0,1,9.5,11.22c.11.53.15,1.08.22,1.62a2.87,2.87,0,0,0,.05.31V30ZM15,2.4a6.32,6.32,0,1,0,6.33,6.33A6.35,6.35,0,0,0,15,2.4Z" transform="translate(0 -0.06)"/></svg>                  <span className="text-sm font-medium">Profilo</span>
+                </div>
+              </NavLink>
+            </li>
           </ul>
         </div>
       </div>

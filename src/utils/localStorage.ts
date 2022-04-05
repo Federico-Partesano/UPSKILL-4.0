@@ -26,8 +26,12 @@ return localStorage[type](...args);
 export const setStorageItem = <K extends keyof KeyStorage>(key: K, value: KeyStorage[K]) => {
     localStorage.setItem(key, JSON.stringify(value));
 }
-export const getStorageItem = <K extends keyof KeyStorage>(key: K): KeyStorage[K] => {
-    return JSON.parse(localStorage.getItem(key)!) as KeyStorage[K];
+export const getStorageItem = <K extends keyof KeyStorage>(key: K): KeyStorage[K] | null => {
+    try{
+        return JSON.parse(localStorage.getItem(key)!) as KeyStorage[K];
+    } catch(e) {
+        return null;
+    }
 }
 
 // export type KeyOfType<T, K> = { [P in keyof T]: T[P] extends K ? P : never }[keyof T];

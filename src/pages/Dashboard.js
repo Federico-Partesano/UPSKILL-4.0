@@ -26,6 +26,9 @@ import { steps } from "../components/stepsChatBox";
 import bot from "./../images/bot.svg";
 import useSignIn from "../hooks/useSignIn";
 // import logo from "./../pages/logoWhite.svg";
+import axios from "axios";
+import { getUrlApi } from "../endpoints";
+import { getStorageItem } from "../utils/localStorage";
 
 const answers = {
   values: {
@@ -39,6 +42,10 @@ const answers = {
 function Dashboard({ gridDashboard, notifications }) {
   const { tokenJwt } = useSignIn();
   const navigate = useNavigate();
+
+
+
+
   const memo = useMemo(() => (
     <Chatbot
       steps={steps}

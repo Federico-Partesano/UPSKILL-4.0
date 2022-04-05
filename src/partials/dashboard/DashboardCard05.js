@@ -29,7 +29,7 @@ const DashboardCard05 = ({ array, title = "Valori in RealTime" }) => {
   ];
 
   const [slicedData, setSlicedData] = useState(
-    array[0] ? array[0].slice(0, range) : 0
+    array ? array.slice(0, range) : 0
   );
   // Generate fake dates from now to back in time
   const generateDates = () => {

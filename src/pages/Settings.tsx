@@ -73,12 +73,12 @@ const Settings: FC<{ gridDashboard: any; notifications: any }> = ({
     getData();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => {    
     data &&
       setStampData({
         milkTank: data.filter(
           ({ machine: { typology } }: { machine: { typology: string } }) =>
-            typology === "Milk_Tank"
+            typology === "Milk_Tank" ||  typology === "'Milk_Tank"
         ),
 
         pasteurization: data.filter(

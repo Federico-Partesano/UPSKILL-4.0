@@ -1,0 +1,46 @@
+#title {
+    max-width: 80%;
+    width: 500px;
+    margin: 30px auto;
+    color: #000;
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 10px;
+    border-bottom: 2px solid black;
+  }
+
+  #image {
+      align-self: center;
+  }
+
+  .container__label {
+      margin-top: 2.5rem;
+      min-width: 40%;
+      align-self: center;
+      .label {
+          font-size: 1.2rem;
+          font-weight: bold;
+      }
+      .value {
+        font-size: 0.9rem;
+          border-bottom: 1px solid black;
+      }
+  }
+
+  .container__button {
+      margin-top: 4rem;
+      align-self: center;
+      .button {
+          transition: all ease-in-out 0.3s;
+          cursor: pointer;
+          color: white;
+        border-radius: 0.5rem;
+          background-color: #FF0000;
+          padding: 0.5rem 2rem;
+          &:hover {
+            background-color: #c70505;
+
+          }
+      }
+  }

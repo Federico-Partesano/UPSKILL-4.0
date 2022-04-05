@@ -70,7 +70,7 @@ function DashboardCard07({
 
                       <td className="p-2">
                         <div className="text-center">
-                          {`${element.sensorValue}${
+                          {`${element.arrayValue[0]}${
                             element.type === typeSensor.temperature
                               ? "°"
                               : element.type === typeSensor.pressure
